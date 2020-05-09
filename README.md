@@ -5,8 +5,8 @@ date: "05/06/2020"
 output: html_document
 ---
 
-### Domain of Interest - ***domain name***
-We are interested in ***domain name*** because of ***reasons why***.
+### Domain of Interest - *Climate Change*
+We are interested in *Climate Change* because of its relevance to the world of today and tomorrow. How we choose to act against it will have major impact on the enviornment of the future as such, we are interested in how we can best utilize data to visualize its impacts and potential solutions.
 
 Below we list a few examples of previous data driven projects relevant to ***domain name***:
 
