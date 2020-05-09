@@ -10,7 +10,7 @@ We are interested in **Climate Change** because of its relevance to the world of
 
 Below we list a few examples of previous data driven projects relevant to **Climate Change**:
 
-- [source 1](link 1) - brief description
+- [source 1](http://worrydream.com/ClimateChange/) - brief description
 - [source 2](link 2) - brief description
 - [source 3](link 3) - brief description
 
@@ -26,9 +26,26 @@ Based on our knowledge of **Climate Change** and the projects mentioned above, w
 ## Finding Data
 To help us to better understand this domain and answer the questions in the previous section we found the following datasets:
 
-- dataset 1
-    - subinfo etc.
-- dataset 2
+- [Temperature data with various scales](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+    - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). As the file is around ~500 MB we can not upload it to our GitHub as it is over the 50 MB upload size limit.
+    - The data consists of five datasets:
+        - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
+            - Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature
+            - Consists of nine columns:
+                1. **dt** - date of measurment
+                2. **LandAverageTemperature** - global average land temperature in celsius
+                3. **LandAverageTemperatureUncertainty** - the 95% confidence interval around the average
+                4. **LandMaxTemperature** - global average maximum land temperature in celsius
+                5. **LandMaxTemperatureUncertainty** - the 95% confidence interval around the maximum land temperature
+                6. **LandMinTemperature** - global average minimum land temperature in celsius
+                7. **LandMinTemperatureUncertainty** - the 95% confidence interval around the minimum land temperature
+                8. **LandAndOceanAverageTemperature** - global average land and ocean temperature in celsius
+                9. **LandAndOceanAverageTemperatureUncertainty** - the 95% confidence interval around the global average land and ocean temperature
+        - Global Average Land Temperature by Country *(GlobalLandTemperaturesByCountry.csv)*
+        - Global Average Land Temperature by State *(GlobalLandTemperaturesByState.csv)*
+        - Global Land Temperatures By Major City *(GlobalLandTemperaturesByMajorCity.csv)*
+        - Global Land Temperatures By City *(GlobalLandTemperaturesByCity.csv)*
+- [dataset 2](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv)
 - dataset 3
 
 
