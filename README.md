@@ -16,9 +16,9 @@ Below we list a few examples of previous data driven projects relevant to **Clim
 
 Based on our knowledge of **Climate Change** and the projects mentioned above, we propose the following questions:
 
-- How is climate change impacting the economy of different countries?
-- question 2
-- question 3
+- How is climate change impacting the economy of different countries, are there factors that make some countries more susceptible to having a larger carbon footprint?
+- How are natural disasters impacting or being impacted by climate change, how have their natural patterns/fluctuations change in accordance to the change in global environment?
+- What are the trackable by-products of climate change (e.g. CO2 emissions) and what factors correlate to such, as in are there risk factors involved?
 
 ### Finding Data
 To help us to better understand this domain and answer the questions in the previous section we found the following datasets:
