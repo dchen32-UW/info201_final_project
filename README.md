@@ -10,7 +10,9 @@ We are interested in **Climate Change** because of its relevance to the world of
 
 Below we list a few examples of previous data driven projects relevant to **Climate Change**:
 
-- [source 1](http://worrydream.com/ClimateChange/) - brief description
+- [Comprehensive overview of climate change and the impact of technology](http://worrydream.com/ClimateChange/)
+    - Their GitHub page can be found [here](https://github.com/worrydream/ClimateChange). It gives a decently in-depth overview of current funding within the United States, and the impacts of different energy sources. Furthermore, it provides different languages and techologies to model our climate and how different changes can worsen or benefit it. It also includes a lot of interesting visualizations that we could learn from, an example of a nice visualization is shown below:
+    - ![a haha](imgs/project_1_for_readme.png)
 - [source 2](link 2) - brief description
 - [source 3](link 3) - brief description
 
