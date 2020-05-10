@@ -31,7 +31,7 @@ To help us to better understand this domain and answer the questions in the prev
 
 - [**Temperature data with various scales**](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
     - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). All of the datasets from this source are stored in `data/kaggle_global_temp/`, except for *GlobalLandTemperaturesByCity.csv* as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, *GlobalLandTemperaturesByMajorCity.csv*, that provides similar data without the issue of a massive file size.
-    - We can use this data is our *source of truth* for climate change impact, we can utilize this change in temp for the correlations described in the questions above. If we want to see how a certain factor or action correlates with climate change we can attempt to correlate it via the following data. The nice thing about this data is that it provides data at the major city, state, country, and global level so we can accomadate data that describes possible risk factors (e.g. CO2 emissions) that are on different levels, perhaps some are on a country level while others are on a state level. For example, we could correlate CO2 emissions and energy production data on a country level, with the country level global temperature data from this source, this would help us answer our question *"What are the ***trackable by-products*** of climate change (e.g. CO2 emissions) and what factors correlate to such, as in are there risk factors involved?"* as it would allow us to identify potential risk factors via their correlation with the global temperature data.
+    - We can use this data is our *source of truth* for climate change impact, we can utilize this change in temp for the correlations described in the questions above. If we want to see how a certain factor or action correlates with climate change we can attempt to correlate it via the following data. The nice thing about this data is that it provides data at the major city, state, country, and global level so we can accomadate data that describes possible risk factors (e.g. CO2 emissions) that are on different levels, perhaps some are on a country level while others are on a state level. For example, we could correlate CO2 emissions and energy production data on a country level, with the country level global temperature data from this source, this would help us answer our question _"What are the ***trackable by-products*** of climate change (e.g. CO2 emissions) and what factors correlate to such, as in are there risk factors involved?"_ as it would allow us to identify potential risk factors via their correlation with the global temperature data.
     
     - The source consists of four datasets (excluding *GlobalLandTemperaturesByCity.csv*):
         - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
@@ -89,9 +89,27 @@ To help us to better understand this domain and answer the questions in the prev
                 - **Code** - is null for every observation
                 - **Year** - the year the natural disaster data is referring to
                 - **Total.economic.damage.from.natural.disasters..US..** - the sum of economic damages caused by the specified natural disaster in USD
-- dataset 3
-   - []
-       - There are 728 values and 
+- [**Global CO2 level on a monthly basis**](https://datahub.io/core/co2-ppm)
+    - This dataset is from datahub.io and provides, seasonally, corrected and raw data of both the global CO2 level, measured as a mole fraction and converted to ppm (parts per million), and the CO2 level on Mauna Loa, as there's a main sensor and research lab there. The data is stored at `data/datahub_co2_ppm/`. The original raw data is sourced from the US Government's Earth System Research Laboratory, Global Monitoring Division, the global data is from several marine sites.
+    - We can use this dataset to answer our last question _"What are the ***trackable by-products*** of climate change (e.g. CO2 emissions) and what factors correlate to such, as in are there risk factors involved?"_ Specifically, we can attempt to correlate these CO2 levels to other risk factors that could contribute to climate change. In addition we can see if this data correlates well with the global temp data from the first dataset mentioned. If so then we should be able to claim that these CO2 levels are another good marker of climate change and attempt correlations between CO2 levels and risk factors to identify the major sources of climate change.
+    - This source consists of two datasets:
+        - Mauna Loa CO2 levels *(co2_mm-mlo_csv.csv)*
+            - This covers the raw average, interpolated and trend based/seasonally corrected values for CO2 levels, as measured at Mauna Loa resulting in a total of **727 values**
+            - Consists of **6 columns**:
+                - **Date** - the date of measurement
+                - **Decimal.Date** - the data in a percentage of a year format
+                - **Average** - the raw average ppm per month, will be -99.99 if the month is missing (i.e. has absolutely no data)
+                - **Interpolated** - filled in version with interpolated values for the missing months
+                - **Trend** - seasonally corrected CO2 levels, removes the seasonal ups and downs that the interpolated and average graphs have
+                - **Number.of.Days** - the number of days the average column data was derived from, will be -1 for no days
+        - Global CO2 Levels *(co2_mm-gl_csv.csv)*
+            - This covers the raw average, interpolated and trend based/seasonally corrected values for global CO2 levels resulting in a total of **463 values**
+            - Consists of **4 columns**:
+                - **Date** - the date of measurement
+                - **Decimal.Date** - the data in a percentage of a year format
+                - **Average** - the raw average ppm per month
+                - **Trend** - seasonally corrected CO2 levels, removes the seasonal ups and downs that the interpolated and average graphs have
+    
 
 
 
