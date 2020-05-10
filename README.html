@@ -405,15 +405,15 @@ summary {
 <ul>
 <li><a href="https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data"><strong>Temperature data with various scales</strong></a>
 <ul>
-<li>This dataset is from kaggle, although the original raw data was gathered from <a href="http://berkeleyearth.org/data/">Berkely Earth data</a>. All of the datasets from this source are stored in <code>data/kaggle_global_temp</code>, except for <em>GlobalLandTemperaturesByCity.csv</em> as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, <em>GlobalLandTemperaturesByMajorCity.csv</em>, that provides similar data without the issue of a massive file size.</li>
+<li>This dataset is from kaggle, although the original raw data was gathered from <a href="http://berkeleyearth.org/data/">Berkely Earth data</a>. All of the datasets from this source are stored in <code>data/kaggle_global_temp/</code>, except for <em>GlobalLandTemperaturesByCity.csv</em> as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, <em>GlobalLandTemperaturesByMajorCity.csv</em>, that provides similar data without the issue of a massive file size.</li>
 <li>The source consists of four datasets (excluding <em>GlobalLandTemperaturesByCity.csv</em>):
 <ul>
 <li>Global Land and Ocean-and-Land Temperatures <em>(GlobalTemperatures.csv)</em>
 <ul>
-<li>Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of <strong>3192 values</strong></li>
+<li>Provides temperature measurements from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of <strong>3192 values</strong></li>
 <li>Consists of <strong>9 columns</strong>:
 <ul>
-<li><strong>dt</strong> - date of measurment</li>
+<li><strong>dt</strong> - date of measurement</li>
 <li><strong>LandAverageTemperature</strong> - global average land temperature in celsius</li>
 <li><strong>LandAverageTemperatureUncertainty</strong> - the 95% confidence interval around the average</li>
 <li><strong>LandMaxTemperature</strong> - global average maximum land temperature in celsius</li>
@@ -424,16 +424,80 @@ summary {
 <li><strong>LandAndOceanAverageTemperatureUncertainty</strong> - the 95% confidence interval around the global average land and ocean temperature</li>
 </ul></li>
 </ul></li>
-<li>Global Average Land Temperature by Country <em>(GlobalLandTemperaturesByCountry.csv)</em></li>
-<li>Global Average Land Temperature by State <em>(GlobalLandTemperaturesByState.csv)</em></li>
-<li>Global Land Temperatures By Major City <em>(GlobalLandTemperaturesByMajorCity.csv)</em></li>
-<li>Global Land Temperatures By City <em>(GlobalLandTemperaturesByCity.csv)</em></li>
+<li>Global Average Land Temperature by Country <em>(GlobalLandTemperaturesByCountry.csv)</em>
+<ul>
+<li>Provides temperature measurements from 1743 on the average land temperature of each country on a monthly basis resulting in a total of <strong>577,464 values</strong></li>
+<li>Consists of <strong>4 columns</strong>:
+<ul>
+<li><strong>dt</strong> - date of measurement</li>
+<li><strong>AverageTemperature</strong> - country average land temperature in celsius</li>
+<li><strong>AverageTemperatureUncertainty</strong> - the 95% confidence interval around the average</li>
+<li><strong>Country</strong> - name of the country being measured</li>
 </ul></li>
 </ul></li>
-<li><a href="https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv">dataset 2</a></li>
+<li>Global Average Land Temperature by State <em>(GlobalLandTemperaturesByState.csv)</em>
+<ul>
+<li>Provides temperature measurements from 1743, though some states start later, on the average land temperature of each state on a monthly basis resulting in a total of <strong>645,675 values</strong></li>
+<li>Consists of <strong>5 columns</strong>:
+<ul>
+<li><strong>dt</strong> - date of measurement</li>
+<li><strong>AverageTemperature</strong> - country average land temperature in celsius</li>
+<li><strong>AverageTemperatureUncertainty</strong> - the 95% confidence interval around the average</li>
+<li><strong>State</strong> - name of the state being measured</li>
+<li><strong>Country</strong> - name of the state’s country</li>
+</ul></li>
+</ul></li>
+<li>Global Land Temperatures By Major City <em>(GlobalLandTemperaturesByMajorCity.csv)</em>
+<ul>
+<li>Provides temperature measurements from 1743, though some cities start later, on the average land temperature of each major city on a monthly basis resulting in a total of <strong>239,177 values</strong></li>
+<li>Consists of <strong>7 columns</strong>:
+<ul>
+<li><strong>dt</strong> - date of measurement</li>
+<li><strong>AverageTemperature</strong> - country average land temperature in celsius</li>
+<li><strong>AverageTemperatureUncertainty</strong> - the 95% confidence interval around the average</li>
+<li><strong>City</strong> - name of the major city being measured</li>
+<li><strong>Country</strong> - name of the city’s country</li>
+<li><strong>Latitude</strong> - latitude of the city</li>
+<li><strong>Longitude</strong> - longitude of the city</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv"><strong>Count and economic damage of natural disasters</strong></a>
+<ul>
+<li>This is also a dataset from kaggle, though the original data is a subset from <a href="https://ourworldindata.org/natural-disasters">here</a>. It covers the following natural disasters, ‘Drought’, ‘Earthquake’, ‘Extreme temperature’, ‘Extreme weather’, ‘Flood’, ‘Impact’, ‘Landslide’, ‘Mass movement (dry)’, ‘Volcanic activity’ and ‘Wildfire’. It also has a sum of all of the natural disasters per year for both economic information and count. This data is stored in <code>data/kaggle_natural_disaster/</code>.</li>
+<li>The source consists of two datasets:
+<ul>
+<li>Number of natural disasters per year <em>(number-of-natural-disaster-events.csv)</em>
+<ul>
+<li>Gives the count of different types of natural disasters per year resulting in a total of <strong>828 values</strong></li>
+<li>Consists of <strong>4 columns</strong>
+<ul>
+<li><strong>Entity</strong> - type of natural disaster</li>
+<li><strong>Code</strong> - is null for every observation</li>
+<li><strong>Year</strong> - the year the natural disaster data is referring to</li>
+<li><strong>Number.of.reported.natural.disasters..reported.disasters.</strong> - the count of the reports for the specified natural disaster</li>
+</ul></li>
+</ul></li>
+<li>Economic damage associated with a specific type of natural disaster per year <em>(economic-damage-from-natural-disasters.csv)</em>
+<ul>
+<li>Provides the economic damage, in USD, of different types of natural disasters per year resulting in a total of <strong>561 values</strong></li>
+<li>Consists of <strong>4 columns</strong>
+<ul>
+<li><strong>Entity</strong> - type of natural disaster</li>
+<li><strong>Code</strong> - is null for every observation</li>
+<li><strong>Year</strong> - the year the natural disaster data is referring to</li>
+<li><strong>Total.economic.damage.from.natural.disasters..US..</strong> - the sum of economic damages caused by the specified natural disaster in USD</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li>dataset 3
 <ul>
+<li>[]
+<ul>
 <li>There are 728 values and</li>
+</ul></li>
 </ul></li>
 </ul>
 </div>

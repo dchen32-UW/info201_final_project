@@ -29,12 +29,12 @@ Based on our knowledge of **Climate Change** and the projects mentioned above, w
 To help us to better understand this domain and answer the questions in the previous section we found the following datasets:
 
 - [**Temperature data with various scales**](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
-    - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). All of the datasets from this source are stored in `data/kaggle_global_temp`, except for *GlobalLandTemperaturesByCity.csv* as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, *GlobalLandTemperaturesByMajorCity.csv*, that provides similar data without the issue of a massive file size.
+    - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). All of the datasets from this source are stored in `data/kaggle_global_temp/`, except for *GlobalLandTemperaturesByCity.csv* as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, *GlobalLandTemperaturesByMajorCity.csv*, that provides similar data without the issue of a massive file size.
     - The source consists of four datasets (excluding *GlobalLandTemperaturesByCity.csv*):
         - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
-            - Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of **3192 values**
+            - Provides temperature measurements from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of **3192 values**
             - Consists of **9 columns**:
-                - **dt** - date of measurment
+                - **dt** - date of measurement
                 - **LandAverageTemperature** - global average land temperature in celsius
                 - **LandAverageTemperatureUncertainty** - the 95% confidence interval around the average
                 - **LandMaxTemperature** - global average maximum land temperature in celsius
@@ -44,12 +44,50 @@ To help us to better understand this domain and answer the questions in the prev
                 - **LandAndOceanAverageTemperature** - global average land and ocean temperature in celsius
                 - **LandAndOceanAverageTemperatureUncertainty** - the 95% confidence interval around the global average land and ocean temperature
         - Global Average Land Temperature by Country *(GlobalLandTemperaturesByCountry.csv)*
+            - Provides temperature measurements from 1743 on the average land temperature of each country on a monthly basis resulting in a total of **577,464 values**
+            - Consists of **4 columns**:
+                - **dt** - date of measurement
+                - **AverageTemperature** - country average land temperature in celsius
+                - **AverageTemperatureUncertainty** - the 95% confidence interval around the average
+                - **Country** - name of the country being measured
         - Global Average Land Temperature by State *(GlobalLandTemperaturesByState.csv)*
+            - Provides temperature measurements from 1743, though some states start later, on the average land temperature of each state on a monthly basis resulting in a total of **645,675 values**
+            - Consists of **5 columns**:
+                - **dt** - date of measurement
+                - **AverageTemperature** - country average land temperature in celsius
+                - **AverageTemperatureUncertainty** - the 95% confidence interval around the average
+                - **State** - name of the state being measured
+                - **Country** - name of the state's country
         - Global Land Temperatures By Major City *(GlobalLandTemperaturesByMajorCity.csv)*
-        - Global Land Temperatures By City *(GlobalLandTemperaturesByCity.csv)*
-- [dataset 2](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv)
+            - Provides temperature measurements from 1743, though some cities start later, on the average land temperature of each major city on a monthly basis resulting in a total of **239,177 values**
+            - Consists of **7 columns**:
+                - **dt** - date of measurement
+                - **AverageTemperature** - country average land temperature in celsius
+                - **AverageTemperatureUncertainty** - the 95% confidence interval around the average
+                - **City** - name of the major city being measured
+                - **Country** - name of the city's country
+                - **Latitude** - latitude of the city
+                - **Longitude** - longitude of the city
+- [**Count and economic damage of natural disasters**](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv)
+    - This is also a dataset from kaggle, though the original data is a subset from [here](https://ourworldindata.org/natural-disasters). It covers the following natural disasters, 'Drought', 'Earthquake', 'Extreme temperature', 'Extreme weather', 'Flood', 'Impact', 'Landslide', 'Mass movement (dry)', 'Volcanic activity' and 'Wildfire'. It also has a sum of all of the natural disasters per year for both economic information and count. This data is stored in `data/kaggle_natural_disaster/`.
+    - The source consists of two datasets:
+        - Number of natural disasters per year *(number-of-natural-disaster-events.csv)*
+            - Gives the count of different types of natural disasters per year resulting in a total of **828 values**
+            - Consists of **4 columns**
+                - **Entity** - type of natural disaster
+                - **Code** - is null for every observation
+                - **Year** - the year the natural disaster data is referring to
+                - **Number.of.reported.natural.disasters..reported.disasters.** - the count of the reports for the specified natural disaster
+        - Economic damage associated with a specific type of natural disaster per year *(economic-damage-from-natural-disasters.csv)*
+            - Provides the economic damage, in USD, of different types of natural disasters per year resulting in a total of **561 values**
+            - Consists of **4 columns**
+                - **Entity** - type of natural disaster
+                - **Code** - is null for every observation
+                - **Year** - the year the natural disaster data is referring to
+                - **Total.economic.damage.from.natural.disasters..US..** - the sum of economic damages caused by the specified natural disaster in USD
 - dataset 3
-   - There are 728 values and 
+   - []
+       - There are 728 values and 
 
 
 
