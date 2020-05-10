@@ -12,7 +12,7 @@ Below we list a few examples of previous data driven projects relevant to **Clim
 
 - [Comprehensive overview of climate change and the impact of technology](http://worrydream.com/ClimateChange/)
     - Their GitHub page can be found [here](https://github.com/worrydream/ClimateChange). It gives a decently in-depth overview of current funding within the United States, and the impacts of different energy sources. Furthermore, it provides different languages and techologies to model our climate and how different changes can worsen or benefit it. It also includes a lot of interesting visualizations that we could learn from, an example of a nice visualization is shown below:
-    - ![a haha](imgs/project_1_for_readme.png)
+    - ![image of electricity source and resulting energy comsumption](imgs/project_1_for_readme.png)
 - [source 2](link 2) - brief description
 - [source 3](link 3) - brief description
 
@@ -28,12 +28,12 @@ Based on our knowledge of **Climate Change** and the projects mentioned above, w
 ## Finding Data
 To help us to better understand this domain and answer the questions in the previous section we found the following datasets:
 
-- [Temperature data with various scales](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
-    - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). As the file is around ~500 MB we can not upload it to our GitHub as it is over the 50 MB upload size limit.
-    - The data consists of five datasets:
+- [**Temperature data with various scales**](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+    - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). All of the datasets from this source are stored in `data/kaggle_global_temp`, except for *GlobalLandTemperaturesByCity.csv* as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, *GlobalLandTemperaturesByMajorCity.csv*, that provides similar data without the issue of a massive file size.
+    - The source consists of four datasets (excluding *GlobalLandTemperaturesByCity.csv*):
         - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
-            - Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature
-            - Consists of nine columns:
+            - Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of **3192 values**
+            - Consists of **9 columns**:
                 - **dt** - date of measurment
                 - **LandAverageTemperature** - global average land temperature in celsius
                 - **LandAverageTemperatureUncertainty** - the 95% confidence interval around the average
@@ -49,6 +49,7 @@ To help us to better understand this domain and answer the questions in the prev
         - Global Land Temperatures By City *(GlobalLandTemperaturesByCity.csv)*
 - [dataset 2](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv)
 - dataset 3
+   - There are 728 values and 
 
 
 
