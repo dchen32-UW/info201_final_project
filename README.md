@@ -34,15 +34,15 @@ To help us to better understand this domain and answer the questions in the prev
         - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
             - Provides temperature measurments from 1750 onward for average land temperature and 1850 onward for average land + water temperature
             - Consists of nine columns:
-                1. **dt** - date of measurment
-                2. **LandAverageTemperature** - global average land temperature in celsius
-                3. **LandAverageTemperatureUncertainty** - the 95% confidence interval around the average
-                4. **LandMaxTemperature** - global average maximum land temperature in celsius
-                5. **LandMaxTemperatureUncertainty** - the 95% confidence interval around the maximum land temperature
-                6. **LandMinTemperature** - global average minimum land temperature in celsius
-                7. **LandMinTemperatureUncertainty** - the 95% confidence interval around the minimum land temperature
-                8. **LandAndOceanAverageTemperature** - global average land and ocean temperature in celsius
-                9. **LandAndOceanAverageTemperatureUncertainty** - the 95% confidence interval around the global average land and ocean temperature
+                - **dt** - date of measurment
+                - **LandAverageTemperature** - global average land temperature in celsius
+                - **LandAverageTemperatureUncertainty** - the 95% confidence interval around the average
+                - **LandMaxTemperature** - global average maximum land temperature in celsius
+                - **LandMaxTemperatureUncertainty** - the 95% confidence interval around the maximum land temperature
+                - **LandMinTemperature** - global average minimum land temperature in celsius
+                - **LandMinTemperatureUncertainty** - the 95% confidence interval around the minimum land temperature
+                - **LandAndOceanAverageTemperature** - global average land and ocean temperature in celsius
+                - **LandAndOceanAverageTemperatureUncertainty** - the 95% confidence interval around the global average land and ocean temperature
         - Global Average Land Temperature by Country *(GlobalLandTemperaturesByCountry.csv)*
         - Global Average Land Temperature by State *(GlobalLandTemperaturesByState.csv)*
         - Global Land Temperatures By Major City *(GlobalLandTemperaturesByMajorCity.csv)*
