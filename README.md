@@ -10,10 +10,11 @@ We are interested in **Climate Change** because of its relevance to the world of
 
 Below we list a few examples of previous data driven projects relevant to **Climate Change**:
 
-- [Comprehensive overview of climate change and the impact of technology](http://worrydream.com/ClimateChange/)
+- [**Comprehensive overview of climate change and the impact of technology**](http://worrydream.com/ClimateChange/)
     - Their GitHub page can be found [here](https://github.com/worrydream/ClimateChange). It gives a decently in-depth overview of current funding within the United States, and the impacts of different energy sources. Furthermore, it provides different languages and techologies to model our climate and how different changes can worsen or benefit it. It also includes a lot of interesting visualizations that we could learn from, an example of a nice visualization is shown below:
     - ![image of electricity source and resulting energy comsumption](imgs/project_1_for_readme.png)
-- [source 2](link 2) - brief description
+- [**Impacts of natural disasters, particularly their mortality rates**](https://ourworldindata.org/natural-disasters)
+    - Their Github page can be found [here](https://github.com/owid), it does not exactly cover what they have in their article, but does provide code they used to make various plots that they included. It mainly covers the impact of natural disasters across different countries and their mortality rates in each.
 - [source 3](link 3) - brief description
 
 Based on our knowledge of **Climate Change** and the projects mentioned above, we propose the following questions:
@@ -30,6 +31,8 @@ To help us to better understand this domain and answer the questions in the prev
 
 - [**Temperature data with various scales**](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
     - This dataset is from kaggle, although the original raw data was gathered from [Berkely Earth data](http://berkeleyearth.org/data/). All of the datasets from this source are stored in `data/kaggle_global_temp/`, except for *GlobalLandTemperaturesByCity.csv* as it is around ~500 MB so we can not upload it to our GitHub since it is over the 50 MB upload size limit. In addition, we do not plan on using it as there is a smaller alternative, *GlobalLandTemperaturesByMajorCity.csv*, that provides similar data without the issue of a massive file size.
+    - We can use this data is our *source of truth* for climate change impact, we can utilize this change in temp for the correlations described in the questions above. If we want to see how a certain factor or action correlates with climate change we can attempt to correlate it via the following data. The nice thing about this data is that it provides data at the major city, state, country, and global level so we can accomadate data that describes possible risk factors (e.g. CO2 emissions) that are on different levels, perhaps some are on a country level while others are on a state level. For example, we could correlate CO2 emissions and energy production data on a country level, with the country level global temperature data from this source, this would help us answer our question *"What are the ***trackable by-products*** of climate change (e.g. CO2 emissions) and what factors correlate to such, as in are there risk factors involved?"* as it would allow us to identify potential risk factors via their correlation with the global temperature data.
+    
     - The source consists of four datasets (excluding *GlobalLandTemperaturesByCity.csv*):
         - Global Land and Ocean-and-Land Temperatures *(GlobalTemperatures.csv)*
             - Provides temperature measurements from 1750 onward for average land temperature and 1850 onward for average land + water temperature resulting in a total of **3192 values**
@@ -70,6 +73,7 @@ To help us to better understand this domain and answer the questions in the prev
                 - **Longitude** - longitude of the city
 - [**Count and economic damage of natural disasters**](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv)
     - This is also a dataset from kaggle, though the original data is a subset from [here](https://ourworldindata.org/natural-disasters). It covers the following natural disasters, 'Drought', 'Earthquake', 'Extreme temperature', 'Extreme weather', 'Flood', 'Impact', 'Landslide', 'Mass movement (dry)', 'Volcanic activity' and 'Wildfire'. It also has a sum of all of the natural disasters per year for both economic information and count. This data is stored in `data/kaggle_natural_disaster/`.
+    - We can utilize this dataset to identify how natural disasters are being impacted by climate change
     - The source consists of two datasets:
         - Number of natural disasters per year *(number-of-natural-disaster-events.csv)*
             - Gives the count of different types of natural disasters per year resulting in a total of **828 values**
