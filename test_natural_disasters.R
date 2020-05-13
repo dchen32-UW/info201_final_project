@@ -105,3 +105,61 @@ df_combined %>%
   geom_point(mapping = aes(x = year, y = count, color = damage)) +
   facet_wrap(~disaster) +
   scale_color_gradientn(colours = rainbow(5))
+
+# ------ 
+
+# plot summary statistics
+df_combined <- df_combined %>% mutate(impact = damage / count)
+# looking at size based on mean ratio damage / count meaning larger circles have
+# higher impact, essentially the disaster has caused more damage with a smaller count
+# smaller circles have lower impact, essentially the disaster has caused less damage
+# with a larger count
+df_combined %>%
+  filter(disaster != "All natural disasters")  %>%
+  group_by(disaster) %>%
+  summarize(mean_damage = mean(damage),
+            mean_counts = mean(count),
+            mean_impact = mean(impact)) %>%
+  ggplot() +
+  geom_smooth(mapping = aes(x = mean_damage,
+                            y = mean_counts),
+              color = 'grey', alpha=0.2) +
+  geom_point(mapping = aes(x = mean_damage,
+                           y = mean_counts,
+                           color=disaster,
+                           size = mean_impact))
+
+# we can also plot this ratio on the axis as well, with counts and damage
+# by the impact
+# count by impact
+df_combined %>%
+  filter(disaster != "All natural disasters")  %>%
+  group_by(disaster) %>%
+  summarize(mean_damage = mean(damage),
+            mean_counts = mean(count),
+            mean_impact = mean(impact)) %>%
+  ggplot() +
+  geom_smooth(mapping = aes(x = mean_impact,
+                            y = mean_counts),
+              color = 'grey', alpha=0.2) +
+  geom_point(mapping = aes(x = mean_impact,
+                           y = mean_counts,
+                           color=disaster,
+                           size = mean_damage))
+
+# damage by impact
+df_combined %>%
+  filter(disaster != "All natural disasters")  %>%
+  group_by(disaster) %>%
+  summarize(mean_damage = mean(damage),
+            mean_counts = mean(count),
+            mean_impact = mean(impact)) %>%
+  ggplot() +
+  geom_smooth(mapping = aes(x = mean_impact,
+                            y = mean_damage),
+              color = 'grey', alpha=0.2) +
+  geom_point(mapping = aes(x = mean_impact,
+                           y = mean_damage,
+                           color=disaster,
+                           size = mean_counts))
+             
