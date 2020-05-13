@@ -1,9 +1,13 @@
+library(viridis)
 library(ggplot2)
 library(plotly)
+library(tidyr)
+library(dplyr)
 
 # testing reading in natural disaster dataset and doing prelim plots
 # load in dataset
-df <- read.csv("data/kaggle_natural_disaster/number-of-natural-disaster-events.csv")
+df <- read.csv("data/kaggle_natural_disaster/number-of-natural-disaster-events.csv",
+               stringsAsFactors = FALSE)
 # remove "Code" column
 df <- select(df, -Code)
 # rename columns
@@ -51,3 +55,53 @@ df %>%
   geom_bin2d(mapping = aes(x = year, y = count, color = disaster)) + 
   facet_wrap(~disaster)
 
+# ------------------
+
+# testing adding economic damage
+df_econ <- read.csv("data/kaggle_natural_disaster/economic-damage-from-natural-disasters.csv",
+                    stringsAsFactors = FALSE)
+# remove "Code" column
+df_econ <- select(df_econ, -Code)
+# rename columns
+colnames(df_econ) <- c("disaster", "year", "damage")
+# check dimensions (561, 3)
+dim(df_econ)
+# remove any rows with NA
+df_econ <- df_econ[complete.cases(df_econ), ]
+# check dimensions again (561, 3)
+dim(df_econ)
+
+# combine the two
+df_combined <- left_join(df_econ, df, by = c("year", "disaster"))
+# check the dimensions (561, 4)
+dim(df_combined)
+
+# plot economic damage against counts of each disaster
+df_combined %>%
+  ggplot(mapping = aes(x = damage, y = count, color = disaster)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth() +
+  facet_wrap(~disaster)
+
+df_combined %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot(mapping = aes(x = damage, y = count, color = disaster)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth() +
+  facet_wrap(~disaster)
+
+# damage by year with count colored on
+df_combined %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = year, y = damage, color = count)) +
+  facet_wrap(~disaster) +
+  scale_color_viridis(option = "A")
+
+# count by year with damage colored on and different color palette
+df_combined %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = year, y = count, color = damage)) +
+  facet_wrap(~disaster) +
+  scale_color_gradientn(colours = rainbow(5))
