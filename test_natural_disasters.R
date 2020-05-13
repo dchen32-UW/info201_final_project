@@ -26,3 +26,28 @@ ggplot(data = df) +
 trend_plot <- ggplot(data = df) +
   geom_smooth(mapping = aes(x = year, y = count, color = disaster))
 ggplotly(trend_plot)
+
+# all natural disasters may not be a useful measurment unless
+#   we want to find out the percentage of each natural disaster 
+#   tho we really don't need all natural disasters for that either
+# testing filtering out all natural disasters in plots
+# check dimensions (709, 3)
+df %>% filter(disaster != "All natural disasters") %>% dim()
+# do the same plots as before, count by year with disaster colored
+# scatter plot
+df %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = year, y = count, color = disaster))
+# trend line
+df %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_smooth(mapping = aes(x = year, y = count, color = disaster))
+# binned 2d plot by disaster
+df %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_bin2d(mapping = aes(x = year, y = count, color = disaster)) + 
+  facet_wrap(~disaster)
+
