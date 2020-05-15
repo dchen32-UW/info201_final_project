@@ -162,4 +162,33 @@ df_combined %>%
                            y = mean_damage,
                            color=disaster,
                            size = mean_counts))
-             
+
+# joining temperature dataset
+df_temp <- read.csv('data/kaggle_global_temp/GlobalTemperatures.csv',
+                    stringsAsFactors = FALSE)
+# check dimensions (3192, 10)
+dim(df_temp)
+# remove any rows with NA
+df_temp <- df_temp[complete.cases(df_temp), ]
+# check dimensions again (1992, 3)
+dim(df_temp)
+# group by year
+df_temp <- df_temp %>% mutate(year = as.integer(substring(dt, 1, 4)))
+df_temp_by_year <- df_temp %>%
+  group_by(year) %>%
+  summarize(mean_lo_temp = mean(LandAndOceanAverageTemperature, na.rm = TRUE))
+# join with econ+count dataset
+df_combined_temp <- left_join(df_combined, df_temp_by_year, by=c('year'))
+# check dimensions (561, 6)
+dim(df_combined_temp)
+# remove any rows with NA
+df_combined_temp <- df_combined_temp[complete.cases(df_combined_temp), ]
+# check dimensions again (534, 6)
+dim(df_combined_temp)
+# count by temp with damage colored on
+df_combined_temp %>%
+  filter(disaster != "All natural disasters") %>%
+  ggplot() +
+  geom_point(mapping = aes(x = mean_lo_temp, y = count, color = damage)) +
+  facet_wrap(~disaster) +
+  scale_color_gradientn(colours = rainbow(5))
