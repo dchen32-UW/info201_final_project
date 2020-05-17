@@ -192,3 +192,5 @@ df_combined_temp %>%
   geom_point(mapping = aes(x = mean_lo_temp, y = count, color = damage)) +
   facet_wrap(~disaster) +
   scale_color_gradientn(colours = rainbow(5))
+
+
