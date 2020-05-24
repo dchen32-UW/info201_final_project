@@ -4,11 +4,15 @@ library(dplyr)
 # cleans kaggle specific natural disaster type data
 # parameters:
 #   - nd_data = dataframe of kaggle's natural disaster data
-clean_kaggle_nd_data <- function(nd_data) {
+clean_kaggle_nd_data <- function(nd_data, type) {
   # remove "Code" column
   nd_data <- select(nd_data, -Code)
   # rename columns
-  colnames(nd_data) <- c("disaster", "year", "count")
+  if(type == "econ") {
+    colnames(nd_data) <- c("disaster", "year", "count")
+  } else {
+    colnames(nd_data) <- c("disaster", "year", "damage")
+  }
   # remove any rows with NA
   nd_data <- nd_data[complete.cases(nd_data), ]
   
@@ -56,9 +60,9 @@ clean_kaggle_glo_temp_data <- function(glo_temp_data) {
 #   - nd_econ = dataframe of damage of natural disasters events in USD
 get_clean_natural_disaster <- function(glo_temp, nd_count, nd_econ) {
   # clean up natural disaster count dataframe
-  nd_count <- clean_kaggle_nd_data(nd_count)
+  nd_count <- clean_kaggle_nd_data(nd_count, "count")
   # clean up natural disaster damage dataframe
-  nd_econ <- clean_kaggle_nd_data(nd_econ)
+  nd_econ <- clean_kaggle_nd_data(nd_econ, "econ")
   # clean up global temp data
   glo_temp <- clean_kaggle_glo_temp_data(glo_temp)
   # merge data
