@@ -429,8 +429,40 @@ disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</co
 <div id="data-visualizations" class="section level2">
 <h2>Data Visualizations</h2>
 <p>This first chart shows the relationship between ___ and ___.</p>
+<pre class="r"><code>#plot_one
+colnames(natural_disaster_data)</code></pre>
+<pre><code>## [1] &quot;disaster&quot;             &quot;year&quot;                 &quot;count.x&quot;             
+## [4] &quot;count.y&quot;              &quot;mean_land_ocean_temp&quot; &quot;mean_land_temp&quot;</code></pre>
 <p>This chart shows the relationship between ___ and ___.</p>
+<pre class="r"><code>#plot_two
+get_clean_natural_disaster</code></pre>
+<pre><code>## function (glo_temp, nd_count, nd_econ) 
+## {
+##     nd_count &lt;- clean_kaggle_nd_data(nd_count, &quot;count&quot;)
+##     nd_econ &lt;- clean_kaggle_nd_data(nd_econ, &quot;econ&quot;)
+##     glo_temp &lt;- clean_kaggle_glo_temp_data(glo_temp)
+##     result &lt;- left_join(nd_econ, nd_count, by = c(&quot;year&quot;, &quot;disaster&quot;))
+##     result &lt;- left_join(result, glo_temp, by = c(&quot;year&quot;))
+##     result &lt;- result[complete.cases(result), ]
+##     return(result)
+## }</code></pre>
+<pre class="r"><code>#trendline_nd_count_by_year(natural_disaster_data)</code></pre>
 <p>This chart shows the relationship between ___ and ___.</p>
+<pre class="r"><code>#plot_three
+clean_kaggle_nd_data</code></pre>
+<pre><code>## function (nd_data, type) 
+## {
+##     nd_data &lt;- select(nd_data, -Code)
+##     if (type == &quot;econ&quot;) {
+##         colnames(nd_data) &lt;- c(&quot;disaster&quot;, &quot;year&quot;, &quot;damage&quot;)
+##     }
+##     else {
+##         colnames(nd_data) &lt;- c(&quot;disaster&quot;, &quot;year&quot;, &quot;count&quot;)
+##     }
+##     nd_data &lt;- nd_data[complete.cases(nd_data), ]
+##     return(nd_data)
+## }</code></pre>
+<pre class="r"><code>#scatter_nd_count_by_temp(natural_disaster_data)</code></pre>
 </div>
 
 

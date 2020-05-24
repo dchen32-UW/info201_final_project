@@ -91,6 +91,7 @@ This first chart shows the relationship between ___ and ___.
 
 ```{r}
 #plot_one
+colnames(natural_disaster_data)
 ```
 
 
