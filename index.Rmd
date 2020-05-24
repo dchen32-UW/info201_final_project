@@ -19,6 +19,7 @@ library(plotly)
 ```
 
 ## Introduction
+This project will focus on global climate change impacts and consider temperature changes as well as natural disaster events. We aim to visualize trends in global disasters and temperature data. This will help illuminate areas that have been impacted by climate change the most. We hope that this project will lead to greater awareness of the extent of climate change impacts as well as an understanding of which areas need the most attention and resources for combating the effects of climate change.
 
 ## Data Cleaning
 We will be examining **two datasets** for this deliverable. The first consists of *yearly average land temperatures per country*. The other consists of a combination of *yearly global average land temperatures* and *yearly count and total damages of natural disaster events*. We have already gathered the necessary data cleaning functions in `{r setup}` from `scripts/data_cleaning.R` and below we first gather all of the seperate csv files and load them in as dataframes.
@@ -70,3 +71,15 @@ natural_disaster_data <-
 
 
 ## Data Visualizations
+This first chart shows the relationship between ___ and ___. 
+```{r plot_one, echo=FALSE}
+#plot_one
+```
+This chart shows the relationship between ___ and ___.
+```{r plot_two, echo=FALSE}
+#plot_two
+```
+This chart shows the relationship between ___ and ___.
+```{r plot_three, echo=FALSE}
+#plot_three
+```
