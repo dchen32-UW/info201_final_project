@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # import natural disaster and average temperature by country
 #   cleaning functions from data_cleaning.R
 source("scripts/data_cleaning.R")
+#source("scripts/summary_info.R")
 
 # load libraries
 library(dplyr)
@@ -65,10 +66,14 @@ natural_disaster_data <-
 
 
 ## Summary Information
+Our first dataset, which has average temperatures by country, has **value here** entries. 
+
+Our second dataset, which combines the natural disasters and temperatures by country, has **value here** entries.
 
 
 ## Aggregate Table
-
+This table contains information about ___ and highlights ___.
+**table here**
 
 ## Data Visualizations
 This first chart shows the relationship between ___ and ___. 
