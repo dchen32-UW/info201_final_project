@@ -166,6 +166,8 @@ df_combined %>%
 # joining temperature dataset
 df_temp <- read.csv('data/kaggle_global_temp/GlobalTemperatures.csv',
                     stringsAsFactors = FALSE)
+# only select relevant columns
+df_temp <- df_temp %>% select(dt, LandAverageTemperature)
 # check dimensions (3192, 10)
 dim(df_temp)
 # remove any rows with NA

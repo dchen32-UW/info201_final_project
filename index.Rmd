@@ -1,0 +1,72 @@
+---
+title: "Midpoint Deliverable"
+author: "Daniel Chen, Grace Teebken, Tanner Lauzon, Kellen Maier"
+date: "05/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# import natural disaster and average temperature by country
+#   cleaning functions from data_cleaning.R
+source("scripts/data_cleaning.R")
+
+# load libraries
+library(dplyr)
+library(ggplot2)
+library(plotly)
+```
+
+## Introduction
+
+## Data Cleaning
+We will be examining **two datasets** for this deliverable. The first consists of *yearly average land temperatures per country*. The other consists of a combination of *yearly global average land temperatures* and *yearly count and total damages of natural disaster events*. We have already gathered the necessary data cleaning functions in `{r setup}` from `scripts/data_cleaning.R` and below we first gather all of the seperate csv files and load them in as dataframes.
+```{r, cache=TRUE}
+# DATASET 1
+# gather average land temperature by country
+avg_temp_by_country <-
+  read.csv("data/kaggle_global_temp/GlobalLandTemperaturesByCountry.csv",
+           stringsAsFactors = FALSE)
+
+# DATASET 2
+# gather global temperature averages
+global_temp <-
+  read.csv("data/kaggle_global_temp/GlobalTemperatures.csv",
+           stringsAsFactors = FALSE)
+
+# gather natural disaster counts
+natural_disaster_count <-
+  read.csv("data/kaggle_natural_disaster/number-of-natural-disaster-events.csv",
+           stringsAsFactors = FALSE)
+
+# gather natural disaster USD damages
+natural_disaster_damage <-
+  read.csv("data/kaggle_natural_disaster/economic-damage-from-natural-disasters.csv",
+           stringsAsFactors = FALSE)
+```
+
+
+We then clean up and combine the individual dataframes to get our final datasets that we will be using in our further analyses.
+```{r, cache=TRUE}
+# DATASET 1
+# get clean average temperature by country dataset
+avg_country_temp_data <-
+  get_clean_avg_country_temp(avg_temp_by_country)
+
+# DATASET 2
+# get clean combined natural disaster count, damage, and temp dataset
+natural_disaster_data <-
+  get_clean_natural_disaster(global_temp,
+                             natural_disaster_count,
+                             natural_disaster_damage)
+```
+
+
+## Summary Information
+
+
+## Aggregate Table
+
+
+## Data Visualizations
