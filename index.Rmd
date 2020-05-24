@@ -8,10 +8,10 @@ output: html_document
 ```{r setup, include=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-# import natural disaster and average temperature by country
-#   cleaning functions from data_cleaning.R
+# import natural disaster and average temp by country cleaning functions
 source("scripts/data_cleaning.R")
-#source("scripts/summary_info.R")
+# import summary info calculation functions
+source("scripts/summary_info.R")
 
 # load libraries
 library(dplyr)
@@ -66,6 +66,16 @@ natural_disaster_data <-
 
 
 ## Summary Information
+
+```{r}
+# gather summary info for DATASET 1 - average country temperature
+temp_summary_info <- get_summary_info_temp(avg_country_temp_data)
+
+# gather summary info for DATASET 2 - natural disaster count, damage,
+#   and associated global temperature
+disaster_summary_info <- get_summary_info_disaster(natural_disaster_data)
+```
+
 Our first dataset, which has average temperatures by country, has **value here** entries. 
 
 Our second dataset, which combines the natural disasters and temperatures by country, has **value here** entries.

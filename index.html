@@ -413,6 +413,12 @@ natural_disaster_data &lt;-
 </div>
 <div id="summary-information" class="section level2">
 <h2>Summary Information</h2>
+<pre class="r"><code># gather summary info for DATASET 1 - average country temperature
+temp_summary_info &lt;- get_summary_info_temp(avg_country_temp_data)
+
+# gather summary info for DATASET 2 - natural disaster count, damage,
+#   and associated global temperature
+disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</code></pre>
 <p>Our first dataset, which has average temperatures by country, has <strong>value here</strong> entries.</p>
 <p>Our second dataset, which combines the natural disasters and temperatures by country, has <strong>value here</strong> entries.</p>
 </div>
