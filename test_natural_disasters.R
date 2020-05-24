@@ -7,7 +7,7 @@ library(dplyr)
 #   by the type of natural disaster
 # parameters:
 #   - nd_data = dataframe of the natural disaster data including
-#               year, count, and type of disaster 
+#               year, count, and type of disaster
 trendline_nd_count_by_year <- function(nd_data) {
   plot <-
     nd_data %>%
@@ -36,7 +36,6 @@ scatter_nd_count_by_temp <- function(nd_data) {
                                color = damage)) +
       facet_wrap(~disaster) +
       scale_color_gradientn(colours = rainbow(5))
-  
+
   return(plot)
 }
-
