@@ -32,7 +32,7 @@ trend_plot <- ggplot(data = df) +
 ggplotly(trend_plot)
 
 # all natural disasters may not be a useful measurment unless
-#   we want to find out the percentage of each natural disaster 
+#   we want to find out the percentage of each natural disaster
 #   tho we really don't need all natural disasters for that either
 # testing filtering out all natural disasters in plots
 # check dimensions (709, 3)
@@ -52,7 +52,7 @@ df %>%
 df %>%
   filter(disaster != "All natural disasters") %>%
   ggplot() +
-  geom_bin2d(mapping = aes(x = year, y = count, color = disaster)) + 
+  geom_bin2d(mapping = aes(x = year, y = count, color = disaster)) +
   facet_wrap(~disaster)
 
 # ------------------
@@ -106,13 +106,15 @@ df_combined %>%
   facet_wrap(~disaster) +
   scale_color_gradientn(colours = rainbow(5))
 
-# ------ 
+# ------
 
 # plot summary statistics
 df_combined <- df_combined %>% mutate(impact = damage / count)
 # looking at size based on mean ratio damage / count meaning larger circles have
-# higher impact, essentially the disaster has caused more damage with a smaller count
-# smaller circles have lower impact, essentially the disaster has caused less damage
+# higher impact, essentially the disaster has caused more damage
+# with a smaller count
+# smaller circles have lower impact, essentially the disaster
+# has caused less damage
 # with a larger count
 df_combined %>%
   filter(disaster != "All natural disasters")  %>%
@@ -194,5 +196,3 @@ df_combined_temp %>%
   geom_point(mapping = aes(x = mean_lo_temp, y = count, color = damage)) +
   facet_wrap(~disaster) +
   scale_color_gradientn(colours = rainbow(5))
-
-
