@@ -15,7 +15,7 @@ clean_kaggle_nd_data <- function(nd_data, type) {
   }
   # remove any rows with NA
   nd_data <- nd_data[complete.cases(nd_data), ]
-
+  
   return(nd_data)
 }
 
@@ -47,7 +47,7 @@ clean_kaggle_glo_temp_data <- function(glo_temp_data) {
                      na.rm = TRUE))
   # remove any rows with NA, just to make sure
   glo_temp_data <- glo_temp_data[complete.cases(glo_temp_data), ]
-
+  
   return(glo_temp_data)
 }
 
@@ -76,7 +76,7 @@ get_clean_natural_disaster <- function(glo_temp, nd_count, nd_econ) {
                       by = c("year"))
   # clean up any new NA values
   result <- result[complete.cases(result), ]
-
+  
   return(result)
 }
 
@@ -167,6 +167,6 @@ get_clean_avg_country_temp <- function(country_temp) {
     mutate(region = ifelse(region == "United Kingdom", "UK", region))
   # remove any NA values
   country_temp <- country_temp[complete.cases(country_temp), ]
-
+  
   return(country_temp)
 }
