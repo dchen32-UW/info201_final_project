@@ -9,9 +9,9 @@ clean_kaggle_nd_data <- function(nd_data, type) {
   nd_data <- select(nd_data, -Code)
   # rename columns
   if(type == "econ") {
-    colnames(nd_data) <- c("disaster", "year", "count")
-  } else {
     colnames(nd_data) <- c("disaster", "year", "damage")
+  } else {
+    colnames(nd_data) <- c("disaster", "year", "count")
   }
   # remove any rows with NA
   nd_data <- nd_data[complete.cases(nd_data), ]

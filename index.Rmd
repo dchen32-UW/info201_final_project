@@ -12,11 +12,12 @@ knitr::opts_chunk$set(echo = TRUE)
 source("scripts/data_cleaning.R")
 # import summary info calculation functions
 source("scripts/summary_info.R")
+# import plotting functions to test
+source("test_natural_disasters.R")
 
 # load libraries
 library(dplyr)
 library(ggplot2)
-library(plotly)
 ```
 
 ## Introduction
@@ -87,14 +88,24 @@ This table contains information about ___ and highlights ___.
 
 ## Data Visualizations
 This first chart shows the relationship between ___ and ___. 
-```{r plot_one, echo=FALSE}
+
+```{r}
 #plot_one
 ```
+
+
 This chart shows the relationship between ___ and ___.
-```{r plot_two, echo=FALSE}
+
+```{r}
 #plot_two
+trendline_nd_count_by_year(natural_disaster_data)
 ```
+
+
 This chart shows the relationship between ___ and ___.
-```{r plot_three, echo=FALSE}
+
+```{r}
 #plot_three
+scatter_nd_count_by_temp(natural_disaster_data)
 ```
+
