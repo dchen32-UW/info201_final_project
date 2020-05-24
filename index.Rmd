@@ -5,8 +5,8 @@ date: "05/26/2020"
 output: html_document
 ---
 
-```{r setup, include=FALSE, warning=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 # import natural disaster and average temp by country cleaning functions
 source("scripts/data_cleaning.R")
