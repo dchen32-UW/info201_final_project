@@ -13,6 +13,11 @@ trendline_nd_count_by_year <- function(nd_data) {
     ggplot() +
     geom_smooth(mapping = aes(x = year,
                               y = count,
-                              color = disaster))
+                              color = disaster)) +
+    labs(color = "Disaster Type",
+         title = paste0("Disaster Count by Time ",
+                        "with Associated Disaster Type"),
+         x = "Time (year)",
+         y = "Count (# of Occurrences)")
   return(plot)
 }

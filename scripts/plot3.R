@@ -26,8 +26,8 @@ scatter_nd_count_by_temp <- function(nd_data) {
                scales="free_y") +
     scale_color_gradientn(colours = rainbow(5)) +
     labs(color = "Normalized Damage",
-         title = paste0("Change in Disaster Count by Change in",
-                        " Mean Temperature with Associated Damage"),
+         title = paste0("Disaster Count by Mean Land Temperature ",
+                        "with Associated Damage"),
          x = "Mean Land Temperature (˚C)",
          y = "Count (# of Occurrences)")
   

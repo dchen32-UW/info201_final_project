@@ -57,8 +57,8 @@ world_map_temp_change <- function(glo_temp) {
       size = .1
     ) + 
     scale_fill_continuous(low = "Yellow", high = "Red") + 
-    labs(fill = "Avg Temp Change (˚C)",
-         title = "Change in Average Temperature from 1912 to 2012") + 
+    labs(fill = "Mean Temp Change (˚C)",
+         title = "Change in Mean Land Temperature from 1912 to 2012") + 
     blank_theme
   return(plot)
 }
