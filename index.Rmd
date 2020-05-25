@@ -87,14 +87,23 @@ Our second dataset, which combines the natural disasters and temperatures by cou
 
 
 ## Aggregate Table
+```{r}
+# gather aggregate table for DATASET 1 - average country temperature
+#temp_aggr_table <- get_aggr_table_temp(avg_country_temp_data)
+
+
+# gather aggregate table for DATASET 2 - natural disaster count, damage,
+#   and associated global temperature
+#disaster_aggr_table <- get_aggr_table_disaster(natural_disaster_data)
+```
+
 This table contains information about ___ and highlights ___.
 **table here**
 
 ## Data Visualizations
 This first chart shows the relationship between ___ and ___. 
 
-```{r}
-#plot_one
+```{r, warning=FALSE, message=FALSE}
 world_map_temp_change(avg_country_temp_data)
 ```
 
@@ -110,7 +119,6 @@ trendline_nd_count_by_year(natural_disaster_data)
 This chart shows the relationship between ___ and ___.
 
 ```{r, warning=FALSE, message=FALSE}
-#plot_three
 scatter_nd_count_by_temp(natural_disaster_data)
 ```
 

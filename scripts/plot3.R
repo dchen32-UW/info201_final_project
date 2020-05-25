@@ -11,7 +11,6 @@ library(dplyr)
 scatter_nd_count_by_temp <- function(nd_data) {
   plot <-
     nd_data %>%
-    filter(disaster != "All natural disasters") %>%
     ggplot() +
     geom_point(mapping = aes(x = mean_land_temp,
                              y = count,

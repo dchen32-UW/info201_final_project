@@ -11,7 +11,6 @@ library(dplyr)
 trendline_nd_count_by_year <- function(nd_data) {
   plot <-
     nd_data %>%
-    filter(disaster != "All natural disasters") %>%
     ggplot() +
       geom_smooth(mapping = aes(x = year,
                                 y = count,
