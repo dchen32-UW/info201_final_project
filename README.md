@@ -110,7 +110,3 @@ To help us to better understand this domain and answer the questions in the prev
                 - **Average** - the raw average ppm per month
                 - **Trend** - seasonally corrected CO2 levels, removes the seasonal ups and downs that the interpolated and average graphs have
     
-
-
-
-

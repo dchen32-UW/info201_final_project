@@ -56,3 +56,4 @@ get_aggr_table_disaster <- function(nd_data) {
   
   return(differences)
 }
+
