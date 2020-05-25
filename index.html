@@ -419,11 +419,18 @@ temp_summary_info &lt;- get_summary_info_temp(avg_country_temp_data)
 # gather summary info for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</code></pre>
-<p>Our first dataset, which has average temperatures by country, has <strong>value here</strong> entries.</p>
-<p>Our second dataset, which combines the natural disasters and temperatures by country, has <strong>value here</strong> entries.</p>
+<p>Our first dataset, which has average temperatures by country, has 544,811 measurements from 1743 to 2013. It provides data for 241 countries and territories.</p>
+<p>The country with the highest average temperature for all years is <strong>country</strong> with an average temperature of <strong>rounded temperature here</strong>.</p>
+<p>In 1988, Dr. James Hansen <a href="https://www.nytimes.com/1988/06/24/us/global-warming-has-begun-expert-tells-senate.html">testified to Congress</a> that global warming was “99 percent certain” and that the world needed to take action to prevent climate disaster. His testimony put a spotlight on the topic of climate change, and since then, climate change has been an important issue. This important year marks the point at which the American public became aware of the dangers of climate change and realized that action needed to be taken.</p>
+<p>Before 1988, the country with the highest average temperature was <strong>country</strong> with an average temperature of <strong>rounded temperature here</strong>. After 1988, the country with the highest average temperature was Kuwait with an average temperature of 38.8 degrees Celsius.</p>
+<hr />
+<p>Our second dataset, which combines natural disasters and global temperatures, has 534 descriptions of yearly disasters. The range of years is 1900 to 2015.</p>
+<p>The year with the highest global temperature was 2015 with a temperature of 16.1 degrees Celsius.</p>
+<p>The year with the most natural disasters was 2005, with a total of 432 disasters. The year with the most economic damage due to natural disasters was 2011. The most impacted year (most economic damage per disaster) was 2011, with an average cost of $1.09 billion per disaster.</p>
 </div>
 <div id="aggregate-table" class="section level2">
 <h2>Aggregate Table</h2>
+<p>Next, we examine our dataset 1, the average land temperature</p>
 <pre class="r"><code># gather aggregate table for DATASET 1 - average country temperature
 temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)
 knitr::kable(temp_aggr_table)</code></pre>
@@ -513,11 +520,11 @@ knitr::kable(temp_aggr_table)</code></pre>
 </tr>
 </tbody>
 </table>
-<p>We then examine the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have <em>changed</em> both in their number of <em>occurences</em>, their total <em>damage</em>, and how <em>global temperatures</em> have also changed. Using an average of <strong>30 years in the past</strong>, <em>1912 to 1942</em>, and an average of <strong>30 years in the present</strong>, <em>1982 to 2012</em>, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the <em>impact</em> of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the <em>difference in economic damage</em> to focus on which types of natural disasters cause the greatest yearly damage on average.</p>
+<p>We then examine our dataset 2, the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have <em>changed</em> both in their number of <em>occurences</em>, their total <em>damage</em>, and how <em>global temperatures</em> have also changed. Using an average of <strong>30 years in the past</strong>, <em>1912 to 1942</em>, and an average of <strong>30 years in the present</strong>, <em>1982 to 2012</em>, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the <em>impact</em> of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the <em>difference in economic damage</em> to focus on which types of natural disasters cause the greatest yearly damage on average.</p>
 <pre class="r"><code># gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_aggr_table &lt;- get_aggr_table_disaster(natural_disaster_data)
-knitr::kable(disaster_aggr_table)</code></pre>
+kable(disaster_aggr_table)</code></pre>
 <table>
 <thead>
 <tr class="header">
