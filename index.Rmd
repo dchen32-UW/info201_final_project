@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 source("scripts/data_cleaning.R")
 # import summary info calculation functions
 source("scripts/summary_info.R")
+# import aggregate table calculation functions
+source("scripts/aggregate_table.R")
 # import plotting functions to test
 source("test_natural_disasters.R")
 # import plot 1
@@ -91,10 +93,10 @@ Our second dataset, which combines the natural disasters and temperatures by cou
 # gather aggregate table for DATASET 1 - average country temperature
 #temp_aggr_table <- get_aggr_table_temp(avg_country_temp_data)
 
-
 # gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
-#disaster_aggr_table <- get_aggr_table_disaster(natural_disaster_data)
+disaster_aggr_table <- get_aggr_table_disaster(natural_disaster_data)
+knitr::kable(disaster_aggr_table)
 ```
 
 This table contains information about ___ and highlights ___.

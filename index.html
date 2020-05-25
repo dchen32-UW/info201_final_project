@@ -427,10 +427,65 @@ disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</co
 <pre class="r"><code># gather aggregate table for DATASET 1 - average country temperature
 #temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)
 
-
 # gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
-#disaster_aggr_table &lt;- get_aggr_table_disaster(natural_disaster_data)</code></pre>
+disaster_aggr_table &lt;- get_aggr_table_disaster(natural_disaster_data)
+knitr::kable(disaster_aggr_table)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Disaster Type</th>
+<th align="right">Difference in Count</th>
+<th align="right">Difference in Economic Damage (USD)</th>
+<th align="right">Difference in Mean Land Temperature</th>
+<th align="right">Difference in Mean Land+Ocean Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">All natural disasters</td>
+<td align="right">278.419355</td>
+<td align="right">76669850387</td>
+<td align="right">0.5261398</td>
+<td align="right">0.7152339</td>
+</tr>
+<tr class="even">
+<td align="left">Earthquake</td>
+<td align="right">21.148387</td>
+<td align="right">22421031903</td>
+<td align="right">0.4790648</td>
+<td align="right">0.6804454</td>
+</tr>
+<tr class="odd">
+<td align="left">Extreme weather</td>
+<td align="right">82.536502</td>
+<td align="right">28835202301</td>
+<td align="right">0.5506310</td>
+<td align="right">0.7316941</td>
+</tr>
+<tr class="even">
+<td align="left">Flood</td>
+<td align="right">111.327957</td>
+<td align="right">17833815634</td>
+<td align="right">0.4694453</td>
+<td align="right">0.6381927</td>
+</tr>
+<tr class="odd">
+<td align="left">Volcanic activity</td>
+<td align="right">4.733333</td>
+<td align="right">120984600</td>
+<td align="right">0.5303000</td>
+<td align="right">0.5740000</td>
+</tr>
+<tr class="even">
+<td align="left">Wildfire</td>
+<td align="right">10.035714</td>
+<td align="right">1840204643</td>
+<td align="right">0.6740089</td>
+<td align="right">0.9988542</td>
+</tr>
+</tbody>
+</table>
 <p>This table contains information about ___ and highlights ___. <strong>table here</strong></p>
 </div>
 <div id="data-visualizations" class="section level2">
