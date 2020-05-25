@@ -426,7 +426,7 @@ disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</co
 <h2>Aggregate Table</h2>
 <pre class="r"><code># gather aggregate table for DATASET 1 - average country temperature
 #temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)</code></pre>
-<p>We then examine the combined natural disaster dataset via an aggregate table shown below.</p>
+<p>We then examine the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have <em>changed</em> both in their number of <em>occurences</em>, their total <em>damage</em>, and how <em>global temperatures</em> have also changed. Using an average of <strong>30 years in the past</strong>, <em>1912 to 1942</em>, and an average of <strong>30 years in the present</strong>, <em>1982 to 2012</em>, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the <em>impact</em> of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the <em>difference in economic damage</em> to focus on which types of natural disasters cause the greatest yearly damage on average.</p>
 <pre class="r"><code># gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_aggr_table &lt;- get_aggr_table_disaster(natural_disaster_data)
@@ -437,6 +437,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <th align="left">Disaster Type</th>
 <th align="right">Difference in Count</th>
 <th align="right">Difference in Economic Damage (billions of USD)</th>
+<th align="right">Difference in Impact (billions of USD / count)</th>
 <th align="right">Difference in Mean Land Temperature (˚C)</th>
 <th align="right">Difference in Mean Land+Ocean Temperature (˚C)</th>
 </tr>
@@ -446,6 +447,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">All natural disasters</td>
 <td align="right">278.419355</td>
 <td align="right">76.6698504</td>
+<td align="right">0.2310056</td>
 <td align="right">0.5261398</td>
 <td align="right">0.7152339</td>
 </tr>
@@ -453,6 +455,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">Extreme weather</td>
 <td align="right">82.536502</td>
 <td align="right">28.8352023</td>
+<td align="right">0.2684528</td>
 <td align="right">0.5506310</td>
 <td align="right">0.7316941</td>
 </tr>
@@ -460,6 +463,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">Earthquake</td>
 <td align="right">21.148387</td>
 <td align="right">22.4210319</td>
+<td align="right">0.8004877</td>
 <td align="right">0.4790648</td>
 <td align="right">0.6804454</td>
 </tr>
@@ -467,6 +471,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">Flood</td>
 <td align="right">111.327957</td>
 <td align="right">17.8338156</td>
+<td align="right">-0.1174333</td>
 <td align="right">0.4694453</td>
 <td align="right">0.6381927</td>
 </tr>
@@ -474,6 +479,7 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">Wildfire</td>
 <td align="right">10.035714</td>
 <td align="right">1.8402046</td>
+<td align="right">0.1816214</td>
 <td align="right">0.6740089</td>
 <td align="right">0.9988542</td>
 </tr>
@@ -481,12 +487,13 @@ knitr::kable(disaster_aggr_table)</code></pre>
 <td align="left">Volcanic activity</td>
 <td align="right">4.733333</td>
 <td align="right">0.1209846</td>
+<td align="right">0.0268838</td>
 <td align="right">0.5303000</td>
 <td align="right">0.5740000</td>
 </tr>
 </tbody>
 </table>
-<p>As shown in the table above</p>
+<p>As shown in the table above, we have also included the <strong>All natural disasters</strong> row as it gives a easier summary of how the total count and damage of natural disasters have changed throughought time along with their associated change in global mean temperatures. We can see from this <strong>All natural disasters</strong> row that not only has the global temperature increased, but the number of natural disasters along with their total yearly damage and impact (damage per incident) have also increased as well. While, <strong>extreme weather</strong> is the natural disaster with the <em>greatest increase in economic damage</em> (increased by ~28.8 billions of USD), earthquakes have the highest change in impact. This means that in the most recent 30 years, 1982 to 2012, <strong>earthquakes</strong> are now causing <em>significantly more damage per event</em> (increased by ~800 million per incident) than the past group of 30 years, 1912 to 1942. Of further concern is the universal increase in count of natural disasters, while <strong>floods</strong> have actually <em>decreased in impact</em>, perhaps we are now better equipped to mitigate its damage, they have <em>severely increased in the number of average occurences per year</em>.</p>
 </div>
 <div id="data-visualizations" class="section level2">
 <h2>Data Visualizations</h2>

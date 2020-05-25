@@ -14,10 +14,10 @@ source("scripts/data_cleaning.R")
 source("scripts/summary_info.R")
 # import aggregate table calculation functions
 source("scripts/aggregate_table.R")
-# import plotting functions to test
-source("test_natural_disasters.R")
 # import plot 1
 source("scripts/plot1.R")
+# import plot 2
+source("scripts/plot2.R")
 # import plot 3
 source("scripts/plot3.R")
 
@@ -96,7 +96,7 @@ Our second dataset, which combines the natural disasters and temperatures by cou
 
 
 
-We then examine the combined natural disaster dataset via an aggregate table shown below, sorted from highest to lowest, descending order, by the difference in economic damage.
+We then examine the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have *changed* both in their number of *occurences*, their total *damage*, and how *global temperatures* have also changed. Using an average of **30 years in the past**, *1912 to 1942*, and an average of **30 years in the present**, *1982 to 2012*, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the *impact* of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the *difference in economic damage* to focus on which types of natural disasters cause the greatest yearly damage on average.
 
 ```{r}
 # gather aggregate table for DATASET 2 - natural disaster count, damage,
@@ -105,7 +105,7 @@ disaster_aggr_table <- get_aggr_table_disaster(natural_disaster_data)
 knitr::kable(disaster_aggr_table)
 ```
 
-As shown in the table above
+As shown in the table above, we have also included the **All natural disasters** row as it gives a easier summary of how the total count and damage of natural disasters have changed throughought time along with their associated change in global mean temperatures. We can see from this **All natural disasters** row that not only has the global temperature increased, but the number of natural disasters along with their total yearly damage and impact (damage per incident) have also increased as well. While, **extreme weather** is the natural disaster with the *greatest increase in economic damage* (increased by ~28.8 billions of USD), earthquakes have the highest change in impact. This means that in the most recent 30 years, 1982 to 2012, **earthquakes** are now causing *significantly more damage per event* (increased by ~800 million per incident) than the past group of 30 years, 1912 to 1942. Of further concern is the universal increase in count of natural disasters, while **floods** have actually *decreased in impact*, perhaps we are now better equipped to mitigate its damage, they have *severely increased in the number of average occurences per year*. Overall, we can see that natural disasters, along with global temperatures, have increased both in their count and damage across time.
 
 
 ## Data Visualizations

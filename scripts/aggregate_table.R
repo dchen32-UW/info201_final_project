@@ -10,9 +10,11 @@ get_aggr_table_disaster <- function(nd_data) {
   present_5_years <- 
     natural_disaster_data %>%
     filter(year >= 1982 & year <= 2012) %>%
+    mutate(impact = (damage / 1000000000) / count) %>%
     group_by(disaster) %>%
     summarize(mean_count_present = mean(count, na.rm = TRUE),
               mean_damage_present = mean(damage, na.rm = TRUE),
+              mean_impact_present = mean(impact, na.rm = TRUE),
               mean_land_ocean_temp_present = mean(mean_land_ocean_temp, na.rm = TRUE),
               mean_land_temp_present = mean(mean_land_temp, na.rm = TRUE))
   
@@ -21,9 +23,11 @@ get_aggr_table_disaster <- function(nd_data) {
   past_5_years <-
     natural_disaster_data %>%
     filter(year >= 1912 & year <= 1942) %>%
+    mutate(impact = (damage / 1000000000) / count) %>%
     group_by(disaster) %>%
     summarize(mean_count_past = mean(count, na.rm = TRUE),
               mean_damage_past = mean(damage, na.rm = TRUE),
+              mean_impact_past = mean(impact, na.rm = TRUE),
               mean_land_ocean_temp_past = mean(mean_land_ocean_temp, na.rm = TRUE),
               mean_land_temp_past = mean(mean_land_temp, na.rm = TRUE))
   # join them together and calculate differences
@@ -36,6 +40,8 @@ get_aggr_table_disaster <- function(nd_data) {
            damage_diff =
              (mean_damage_present - mean_damage_past)
            / 1000000000,
+           impact_diff = 
+             mean_impact_present - mean_impact_past,
            land_ocean_temp_diff =
              mean_land_ocean_temp_present - mean_land_ocean_temp_past,
            land_temp_diff =
@@ -43,6 +49,7 @@ get_aggr_table_disaster <- function(nd_data) {
     select(disaster,
            count_diff,
            damage_diff,
+           impact_diff,
            land_ocean_temp_diff,
            land_temp_diff) %>%
     arrange(-damage_diff)
@@ -51,6 +58,7 @@ get_aggr_table_disaster <- function(nd_data) {
     c("Disaster Type",
       "Difference in Count",
       "Difference in Economic Damage (billions of USD)",
+      "Difference in Impact (billions of USD / count)",
       "Difference in Mean Land Temperature (˚C)",
       "Difference in Mean Land+Ocean Temperature (˚C)")
   
