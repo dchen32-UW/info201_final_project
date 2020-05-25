@@ -14,6 +14,8 @@ source("scripts/data_cleaning.R")
 source("scripts/summary_info.R")
 # import plotting functions to test
 source("test_natural_disasters.R")
+# import plotting functions to test
+source("scripts/plot3.R")
 
 # load libraries
 library(dplyr)
