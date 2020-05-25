@@ -1,3 +1,6 @@
+library(ggplot2)
+library(dplyr)
+
 # PLOT 3 - plots a split by disaster type scatter plot of each
 #   natural disaster, excluding "All Natural Disasters" group, showing
 #   count of natural disaster by average land temperature with
