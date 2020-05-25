@@ -142,7 +142,7 @@ trendline_nd_count_by_year(natural_disaster_data)
 ```
 
 
-This chart shows the relationship between ___ and ___.
+This chart shows the relationship between the average land temperature and the count of each natural disaster for that year. Added to the plot is the color coding of the amount of damage caused by the natural disasters. Important information to draw from the plots is the obvious trend that with a rise in temperature comes a rise in the number of each disaster. Looking at the damage caused by each disaster separately allows us to see which disasters in particular have a greater impact on people with the number of occurences rising. The "All Natural Disasters" plot clearly shows that the rise in temperature brings a rise in natural disasters and that the more natural disasters that occur, the more damage is done.
 
 ```{r, warning=FALSE, message=FALSE}
 scatter_nd_count_by_temp(natural_disaster_data)
