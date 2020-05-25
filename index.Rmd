@@ -24,6 +24,7 @@ source("scripts/plot3.R")
 # load libraries
 library(dplyr)
 library(ggplot2)
+library(knitr)
 ```
 
 ## Introduction
@@ -83,9 +84,23 @@ temp_summary_info <- get_summary_info_temp(avg_country_temp_data)
 disaster_summary_info <- get_summary_info_disaster(natural_disaster_data)
 ```
 
-Our first dataset, which has average temperatures by country, has **value here** entries. 
+Our first dataset, which has average temperatures by country, has `r format(temp_summary_info$length, big.mark = ",")` measurements from `r temp_summary_info$range$min_year` to `r temp_summary_info$range$max_year`. It provides data for `r temp_summary_info$regions` countries and territories.
 
-Our second dataset, which combines the natural disasters and temperatures by country, has **value here** entries.
+The country with the highest average temperature for all years is **country** with an average temperature of **rounded temperature here**.
+
+In 1988, Dr. James Hansen [testified to Congress](https://www.nytimes.com/1988/06/24/us/global-warming-has-begun-expert-tells-senate.html) that global warming was "99 percent certain" and that the world needed to take action to prevent climate disaster. His testimony put a spotlight on the topic of climate change, and since then, climate change has been an important issue. This important year marks the point at which the American public became aware of the dangers of climate change and realized that action needed to be taken.
+
+Before 1988, the country with the highest average temperature was **country** with an average temperature of **rounded temperature here**.
+After 1988, the country with the highest average temperature was `r temp_summary_info$country_highest_after_1988$region` with an average temperature of `r round( temp_summary_info$country_highest_after_1988$avg_temp, 1)` degrees Celsius.
+
+--------
+
+Our second dataset, which combines natural disasters and global temperatures, has `r disaster_summary_info$length` descriptions of yearly disasters. The range of years is `r disaster_summary_info$range$min_year` to `r disaster_summary_info$range$max_year`.
+
+The year with the highest global temperature was `r disaster_summary_info$year_highest_temp$year` with a temperature of `r round( disaster_summary_info$year_highest_temp$mean_land_ocean_temp, 1)` degrees Celsius.
+
+The year with the most natural disasters was `r disaster_summary_info$year_highest_count$year`, with a total of `r disaster_summary_info$year_highest_count$count` disasters. The year with the most economic damage due to natural disasters was `r disaster_summary_info$year_highest_economic_damage$year`. The most impacted year (most economic damage per disaster) was `r disaster_summary_info$year_highest_impact$year`, with an average cost of $`r sprintf("%.2f billion", disaster_summary_info$year_highest_impact$impact / 1000000000)` per disaster.
+
 
 
 ## Aggregate Table
