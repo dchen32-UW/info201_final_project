@@ -92,15 +92,21 @@ Our second dataset, which combines the natural disasters and temperatures by cou
 ```{r}
 # gather aggregate table for DATASET 1 - average country temperature
 #temp_aggr_table <- get_aggr_table_temp(avg_country_temp_data)
+```
 
+
+
+We then examine the combined natural disaster dataset via an aggregate table shown below, sorted from highest to lowest, descending order, by the difference in economic damage.
+
+```{r}
 # gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_aggr_table <- get_aggr_table_disaster(natural_disaster_data)
 knitr::kable(disaster_aggr_table)
 ```
 
-This table contains information about ___ and highlights ___.
-**table here**
+As shown in the table above
+
 
 ## Data Visualizations
 This first chart shows the relationship between ___ and ___. 

@@ -34,7 +34,8 @@ get_aggr_table_disaster <- function(nd_data) {
     mutate(count_diff =
              mean_count_present - mean_count_past,
            damage_diff =
-             mean_damage_present - mean_damage_past,
+             (mean_damage_present - mean_damage_past)
+           / 1000000000,
            land_ocean_temp_diff =
              mean_land_ocean_temp_present - mean_land_ocean_temp_past,
            land_temp_diff =
@@ -43,14 +44,15 @@ get_aggr_table_disaster <- function(nd_data) {
            count_diff,
            damage_diff,
            land_ocean_temp_diff,
-           land_temp_diff)
+           land_temp_diff) %>%
+    arrange(-damage_diff)
   # rename columns
   colnames(differences) <-
     c("Disaster Type",
       "Difference in Count",
-      "Difference in Economic Damage (USD)",
-      "Difference in Mean Land Temperature",
-      "Difference in Mean Land+Ocean Temperature")
+      "Difference in Economic Damage (billions of USD)",
+      "Difference in Mean Land Temperature (˚C)",
+      "Difference in Mean Land+Ocean Temperature (˚C)")
   
   return(differences)
 }
