@@ -14,7 +14,9 @@ source("scripts/data_cleaning.R")
 source("scripts/summary_info.R")
 # import plotting functions to test
 source("test_natural_disasters.R")
-# import plotting functions to test
+# import plot 1
+source("scripts/plot1.R")
+# import plot 3
 source("scripts/plot3.R")
 
 # load libraries
@@ -93,7 +95,7 @@ This first chart shows the relationship between ___ and ___.
 
 ```{r}
 #plot_one
-colnames(natural_disaster_data)
+world_map_temp_change(avg_country_temp_data)
 ```
 
 
