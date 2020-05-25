@@ -16,3 +16,5 @@ trendline_nd_count_by_year <- function(nd_data) {
                               color = disaster))
   return(plot)
 }
+#Summary Information:
+#
