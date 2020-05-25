@@ -24,6 +24,7 @@ source("scripts/plot3.R")
 # load libraries
 library(dplyr)
 library(ggplot2)
+library(countrycode)
 ```
 
 ## Introduction
@@ -89,14 +90,16 @@ Our second dataset, which combines the natural disasters and temperatures by cou
 
 
 ## Aggregate Table
+Next, we examine our dataset 1, the average land temperature 
 ```{r}
 # gather aggregate table for DATASET 1 - average country temperature
-#temp_aggr_table <- get_aggr_table_temp(avg_country_temp_data)
+temp_aggr_table <- get_aggr_table_temp(avg_country_temp_data)
+knitr::kable(temp_aggr_table)
 ```
 
 
 
-We then examine the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have *changed* both in their number of *occurences*, their total *damage*, and how *global temperatures* have also changed. Using an average of **30 years in the past**, *1912 to 1942*, and an average of **30 years in the present**, *1982 to 2012*, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the *impact* of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the *difference in economic damage* to focus on which types of natural disasters cause the greatest yearly damage on average.
+We then examine our dataset 2, the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have *changed* both in their number of *occurences*, their total *damage*, and how *global temperatures* have also changed. Using an average of **30 years in the past**, *1912 to 1942*, and an average of **30 years in the present**, *1982 to 2012*, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the *impact* of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the *difference in economic damage* to focus on which types of natural disasters cause the greatest yearly damage on average.
 
 ```{r}
 # gather aggregate table for DATASET 2 - natural disaster count, damage,

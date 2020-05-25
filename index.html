@@ -425,7 +425,94 @@ disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</co
 <div id="aggregate-table" class="section level2">
 <h2>Aggregate Table</h2>
 <pre class="r"><code># gather aggregate table for DATASET 1 - average country temperature
-#temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)</code></pre>
+temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)
+knitr::kable(temp_aggr_table)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Region</th>
+<th align="right">Ancient Mean Land Temperature (˚C)</th>
+<th align="right">Past Mean Land Temperature (˚C)</th>
+<th align="right">Present Mean Land Temperature (˚C)</th>
+<th align="right">Previous Change in Mean Land Temperature (˚C)</th>
+<th align="right">Recent Change in Mean Land Temperature (˚C)</th>
+<th align="right">Overall Change in Mean Land Temperature (˚C)</th>
+<th align="right">Change Between Recent and Previous Changes (˚C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">East Asia &amp; Pacific</td>
+<td align="right">18.793237</td>
+<td align="right">21.336407</td>
+<td align="right">22.021230</td>
+<td align="right">2.5431702</td>
+<td align="right">0.6848226</td>
+<td align="right">3.2279928</td>
+<td align="right">-1.8583476</td>
+</tr>
+<tr class="even">
+<td align="left">Middle East &amp; North Africa</td>
+<td align="right">21.039802</td>
+<td align="right">22.408997</td>
+<td align="right">23.172853</td>
+<td align="right">1.3691949</td>
+<td align="right">0.7638563</td>
+<td align="right">2.1330512</td>
+<td align="right">-0.6053386</td>
+</tr>
+<tr class="odd">
+<td align="left">North America</td>
+<td align="right">2.168308</td>
+<td align="right">2.678163</td>
+<td align="right">3.458139</td>
+<td align="right">0.5098548</td>
+<td align="right">0.7799758</td>
+<td align="right">1.2898306</td>
+<td align="right">0.2701210</td>
+</tr>
+<tr class="even">
+<td align="left">Europe &amp; Central Asia</td>
+<td align="right">7.463403</td>
+<td align="right">7.754246</td>
+<td align="right">8.578368</td>
+<td align="right">0.2908434</td>
+<td align="right">0.8241224</td>
+<td align="right">1.1149658</td>
+<td align="right">0.5332790</td>
+</tr>
+<tr class="odd">
+<td align="left">Sub-Saharan Africa</td>
+<td align="right">23.771521</td>
+<td align="right">24.271433</td>
+<td align="right">24.864030</td>
+<td align="right">0.4999122</td>
+<td align="right">0.5925966</td>
+<td align="right">1.0925089</td>
+<td align="right">0.0926844</td>
+</tr>
+<tr class="even">
+<td align="left">South Asia</td>
+<td align="right">19.151047</td>
+<td align="right">19.545157</td>
+<td align="right">20.211691</td>
+<td align="right">0.3941108</td>
+<td align="right">0.6665338</td>
+<td align="right">1.0606446</td>
+<td align="right">0.2724230</td>
+</tr>
+<tr class="odd">
+<td align="left">Latin America &amp; Caribbean</td>
+<td align="right">24.490604</td>
+<td align="right">24.228606</td>
+<td align="right">24.928549</td>
+<td align="right">-0.2619985</td>
+<td align="right">0.6999431</td>
+<td align="right">0.4379447</td>
+<td align="right">0.9619416</td>
+</tr>
+</tbody>
+</table>
 <p>We then examine the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have <em>changed</em> both in their number of <em>occurences</em>, their total <em>damage</em>, and how <em>global temperatures</em> have also changed. Using an average of <strong>30 years in the past</strong>, <em>1912 to 1942</em>, and an average of <strong>30 years in the present</strong>, <em>1982 to 2012</em>, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the <em>impact</em> of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the <em>difference in economic damage</em> to focus on which types of natural disasters cause the greatest yearly damage on average.</p>
 <pre class="r"><code># gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
