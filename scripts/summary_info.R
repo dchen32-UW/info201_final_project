@@ -21,13 +21,13 @@ get_summary_info_temp <- function(dataset) {
   #country highest temp after 1988 (filter for > 1988)
   result$country_highest_after_1988 <-
     dataset %>%
-    filter(year > 1988,
-           avg_temp == max(avg_temp, na.rm = TRUE))
+    filter(year > 1988) %>%
+    filter(avg_temp == max(avg_temp, na.rm = TRUE))
   #country highest temp before 1988 (filter for <= 1988)
   result$country_highest_before_1988 <-
     dataset %>%
-    filter(year <= 1988,
-           avg_temp == max(avg_temp, na.rm = TRUE))
+    filter(year <= 1988) %>%
+    filter(avg_temp == max(avg_temp, na.rm = TRUE))
   return(result)
 }
 
