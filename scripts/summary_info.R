@@ -8,16 +8,26 @@ get_summary_info_temp <- function(dataset) {
   result$range <- dataset %>%
     summarize(max_year = max(year, na.rm = TRUE),
               min_year = min(year, na.rm = TRUE))
-  #number of unique countries (group_by and then n())
-  result$regions <- dataset %>%
-    group_by(region) %>%
-    summarize(regions = n_distinct(region)) %>%
-    nrow()
-  #country highest temp after 1988 (filter for >1988)
-  result$country_highest_after_1988 <- dataset %>%
-    filter(year > 1988, avg_temp == max(avg_temp, na.rm = TRUE))
-  #country highest temp before 1988 (filter for <= 1988)
+  #number of unique countries (pull regions and unique)
+  result$n_regions <-
+    dataset %>%
+    pull(region) %>%
+    unique() %>%
+    length()
   #country highest temp for all years
+  result$country_highest_all_years <-
+    dataset %>%
+    filter(avg_temp == max(avg_temp, na.rm = TRUE))
+  #country highest temp after 1988 (filter for > 1988)
+  result$country_highest_after_1988 <-
+    dataset %>%
+    filter(year > 1988,
+           avg_temp == max(avg_temp, na.rm = TRUE))
+  #country highest temp before 1988 (filter for <= 1988)
+  result$country_highest_before_1988 <-
+    dataset %>%
+    filter(year <= 1988,
+           avg_temp == max(avg_temp, na.rm = TRUE))
   return(result)
 }
 
