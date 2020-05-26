@@ -130,7 +130,7 @@ As shown in the table above, we have also included the **All natural disasters**
 
 
 ## Data Visualizations
-This first chart shows the relationship between ___ and ___. 
+This first chart shows the relationship between location and change in temperature from 1912 to 2012. The color coded map shows that over the last 100  years many countries have seen a rise in temperature. Specifically the northern half of the map has had the biggest noticeable rise and as showin below in the "Disaster Count by Mean Land Temp" plot, rise in temperature is unwanted.
 
 ```{r, warning=FALSE, message=FALSE}
 world_map_temp_change(avg_country_temp_data)
@@ -138,7 +138,7 @@ world_map_temp_change(avg_country_temp_data)
 
 --------
 
-This chart shows the relationship between ___ and ___.
+This chart shows the rise in occurences of natural disasters over time. Looking at the chart, we can see that the overall number of natural disasters has risen greatly. Starting in the early 1900's it is easy to confirm that the total number of natural disasters was below 100, even below 25 natural disasters a year. In 1975 we see the number of "All Natural Disasters" cross 100 in a steep upwards trend that continues all the way to the present where in 2012 we see over 400 natural disasters a year. This trend is highly correlated with the information in the plot below showing change in temperature correlating to change in number of natural disasters.
 
 ```{r, warning=FALSE, message=FALSE}
 #plot_two, still from temp file
