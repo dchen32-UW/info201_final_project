@@ -59,3 +59,4 @@ get_summary_info_disaster <- function(dataset) {
     slice(1)
   return(result)
 }
+
