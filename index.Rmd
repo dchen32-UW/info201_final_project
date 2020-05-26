@@ -130,18 +130,22 @@ As shown in the table above, we have also included the **All natural disasters**
 
 
 ## Data Visualizations
-This first chart shows the relationship between location and change in temperature from 1912 to 2012. The color coded map shows that over the last 100  years many countries have seen a rise in temperature. Specifically the northern half of the map has had the biggest noticeable rise and as showin below in the "Disaster Count by Mean Land Temp" plot, rise in temperature is unwanted.
+
+In our first chart we aim to provide a broad overview of how our overall climate, measured via mean land temperature, has changed for, around, the past 100 years. We accomplish this by using dataset 1, mean land temperature by country, to plot a heatmap of the change in mean land temperature from 1912 to 2012 layered on a world map to show the relative changes of different countries, as shown below.
 
 ```{r, warning=FALSE, message=FALSE}
+# plot 1 - heatmap of dataset 1 on world map
 world_map_temp_change(avg_country_temp_data)
 ```
+
+The changes shown in the map above seem to closely follow the `Recent Change in Mean Land Temperature (˚C)` column in our previously shown aggregate table for dataset 1. This is shown via a greater increase in temperature in the Europe & Central Asia (which we consider Russia to be in) row in the aggregate table and region on the map. Russia and its western neighboring countries emphasize this point the most, as they have the greatest increase (~2-3 ˚C) in mean land temperature. Interestingly, the Southern Hemisphere appears to have been impacted less than the Northern Hemisphere in terms of a universally smaller increase in mean land temperature in response to the rapid climate change in the recent years. This also correlates, as it should because it is the same dataset, to our previous aggregate table where we see relatively smaller values in the `Recent Change in Mean Land Temperature (˚C)` column for regions in the Southern Hemisphere and relatively larger values for regions in the Northern Hemisphere. The reason why we see correlations to the recent changes rather than the previous changes column is because the recent changes column covers averaged temperatures across the time periods of 1912-1942 and 1982-2012 which corresponds quite closely to our cutoffs of 1912 and 2012 in this plot. As such, we should expect any hypotheses that are drawn from the recent change column to correlate well with the hypotheses drawn from this plot. Furthermore, we noted in the aggregate table that the East Asia & Pacific and Middle East & North Africa regions had a decrease in their rate of temperature increase between their most recent (between past and present) and previous changes (between ancient and past) in temperature but had the highest overall change in temperature (between ancient and present). While not apparently obvious, we can see these observations in the heatmap, the above plot, as well. The specified regions are still partially high in their change in mean land temperature, which we can call an artifact of their previous rapid increase in temperature, but due to their recent decrease in their temperature increase they are not the regions with the greatest recent increase. Overall, we can see how universally each of these countries have had a recent increase in their mean land temperature and how there is a differentially high rate of temperature increase in Northern regions.
 
 --------
 
 This chart shows the rise in occurences of natural disasters over time. Looking at the chart, we can see that the overall number of natural disasters has risen greatly. Starting in the early 1900's it is easy to confirm that the total number of natural disasters was below 100, even below 25 natural disasters a year. In 1975 we see the number of "All Natural Disasters" cross 100 in a steep upwards trend that continues all the way to the present where in 2012 we see over 400 natural disasters a year. This trend is highly correlated with the information in the plot below showing change in temperature correlating to change in number of natural disasters.
 
 ```{r, warning=FALSE, message=FALSE}
-#plot_two, still from temp file
+# plot 2 - trendlines of different disaster occurences in dataset 2 across time
 trendline_nd_count_by_year(natural_disaster_data)
 ```
 
@@ -150,6 +154,8 @@ trendline_nd_count_by_year(natural_disaster_data)
 This chart shows the relationship between the average land temperature and the count of each natural disaster for that year. Added to the plot is the color coding of the amount of damage caused by the natural disasters. Important information to draw from the plots is the obvious trend that with a rise in temperature comes a rise in the number of each disaster. Looking at the damage caused by each disaster separately allows us to see which disasters in particular have a greater impact on people with the number of occurences rising. The "All Natural Disasters" plot clearly shows that the rise in temperature brings a rise in natural disasters and that the more natural disasters that occur, the more damage is done.
 
 ```{r, warning=FALSE, message=FALSE}
+# plot 3 - different disaster occurences in dataset 2 by mean land temperature
+#          with associated normalized economic damage (x / 1e11 then log1p)
 scatter_nd_count_by_temp(natural_disaster_data)
 ```
 
