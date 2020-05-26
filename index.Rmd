@@ -96,6 +96,7 @@ As such, we find it important to examine this dataset via two angles, before or 
 # gather summary info for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_summary_info <- get_summary_info_disaster(natural_disaster_data)
+disaster_summary_info
 ```
 Our second dataset, which combines natural disasters and global temperatures, has `r disaster_summary_info$length` descriptions of yearly disasters. The range of years is `r disaster_summary_info$range$min_year` to `r disaster_summary_info$range$max_year`.
 

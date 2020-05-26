@@ -444,7 +444,38 @@ temp_summary_info</code></pre>
 <hr />
 <pre class="r"><code># gather summary info for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
-disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</code></pre>
+disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)
+disaster_summary_info</code></pre>
+<pre><code>## $length
+## [1] 534
+## 
+## $range
+##   max_year min_year
+## 1     2015     1900
+## 
+## $year_highest_economic_damage
+##                disaster year       damage count mean_land_ocean_temp
+## 1 All natural disasters 2011 364093168000   334              15.7695
+##   mean_land_temp
+## 1          9.516
+## 
+## $year_highest_count
+##                disaster year       damage count mean_land_ocean_temp
+## 1 All natural disasters 2005 214205351000   432             15.87925
+##   mean_land_temp
+## 1       9.700917
+## 
+## $year_highest_temp
+##                disaster year      damage count mean_land_ocean_temp
+## 1 All natural disasters 2015 84120138000   380             16.05858
+##   mean_land_temp
+## 1          9.831
+## 
+## $year_highest_impact
+##                disaster year       damage count mean_land_ocean_temp
+## 1 All natural disasters 2011 364093168000   334              15.7695
+##   mean_land_temp     impact
+## 1          9.516 1090099305</code></pre>
 <p>Our second dataset, which combines natural disasters and global temperatures, has 534 descriptions of yearly disasters. The range of years is 1900 to 2015.</p>
 <p>The year with the highest global temperature was 2015 with a temperature of 16.1 degrees Celsius.</p>
 <p>The year with the most natural disasters was 2005, with a total of 432 disasters. The year with the most economic damage due to natural disasters was 2011. The most impacted year (most economic damage per disaster) was 2011, with an average cost of $1.09 billion per disaster.</p>

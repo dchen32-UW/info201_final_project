@@ -11,7 +11,7 @@ world_map_temp_change <- function(glo_temp) {
   # load in world map
   world_data <- map_data("world")
   # define minimalistic theme
-  blank_theme <- theme_bw() + 
+  blank_theme <- theme_bw() +
     theme(
       axis.line = element_blank(),
       axis.text = element_blank(),
@@ -47,7 +47,7 @@ world_map_temp_change <- function(glo_temp) {
   # join to world map lat and long data
   world_data_subset <- left_join(world_data, subset)
   plot <-
-    ggplot(data = world_data_subset) + 
+    ggplot(data = world_data_subset) +
     geom_polygon(
       mapping = aes(x = long,
                     y = lat,
@@ -55,10 +55,10 @@ world_map_temp_change <- function(glo_temp) {
                     fill = temp_change),
       color = "white",
       size = .1
-    ) + 
-    scale_fill_continuous(low = "Yellow", high = "Red") + 
+    ) +
+    scale_fill_continuous(low = "Yellow", high = "Red") +
     labs(fill = "Mean Temp Change (˚C)",
-         title = "Change in Mean Land Temperature from 1912 to 2012") + 
+         title = "Change in Mean Land Temperature from 1912 to 2012") +
     blank_theme
   return(plot)
 }
