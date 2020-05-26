@@ -451,7 +451,7 @@ disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)</co
 </div>
 <div id="aggregate-table" class="section level2">
 <h2>Aggregate Table</h2>
-<p>Next, we examine our dataset 1, the average land temperature</p>
+<p>Next, we look at our dataset 1, the average land temperature, via an aggregate table, shown below, to examine how temperatures differed and changed across time. To examine this dataset we consider three chunks of time, an <strong>ancient</strong> time period from <em>1842 to 1872</em>, a <strong>past</strong> time period from <em>1912 to 1942</em>, and a <strong>present</strong> time period from <em>1982 to 2012</em>. We will examine the average temperatures in ˚C for each of these time period and how temperature has <em>changed between the past and ancient, and the present and past time periods</em>. Then we can examine the <em>overall change in temperature</em>, of which we will sort this dataframe by to look at countries that were most impact (i.e. changed the most across time). Furthermore we compute the <em>difference between the change in temperature from the past to present time periods and the change in temperature from the ancient to past time periods</em>. This allows us to see if, recently, temperature have been changing faster than normal.</p>
 <pre class="r"><code># gather aggregate table for DATASET 1 - average country temperature
 temp_aggr_table &lt;- get_aggr_table_temp(avg_country_temp_data)
 kable(temp_aggr_table)</code></pre>
@@ -541,6 +541,8 @@ kable(temp_aggr_table)</code></pre>
 </tr>
 </tbody>
 </table>
+<p>When looking at the table above we see that the <em>East Asia &amp; Pacific</em> region of the world has the greatest overall change in mean land temperature. However, they have appeared to slow down the rate at which their average temperature increases, as seen in the <code>Changes Between Recent and Previous Changes (˚C)</code> column, where they have a value of -1.858 ˚C, meaning that their most recent change (past to present) in temperature is 1.858 ˚C smaller than their previous change (ancient to past) in temperature. In addition, the <em>Middle East &amp; North Africa</em></p>
+<hr />
 <p>We then examine our dataset 2, the combined natural disaster dataset via an aggregate table, shown below, to view how natural disasters have <em>changed</em> both in their number of <em>occurences</em>, their total <em>damage</em>, and how <em>global temperatures</em> have also changed. Using an average of <strong>30 years in the past</strong>, <em>1912 to 1942</em>, and an average of <strong>30 years in the present</strong>, <em>1982 to 2012</em>, we compute the change in count and damage of natural disasters, and the associated change in global mean land and land+ocean temperatures. Furthermore, we computed the <em>impact</em> of each natural disasters by dividing its damage for the year by the number of occurences. This provides us with a quantitative measurment for the amount of damage the natural disaster causes per incident, and allows us to examine if a disaster is causing more damage per incident as time goes on. This aggregate table is then sorted from highest to lowest, descending order, by the <em>difference in economic damage</em> to focus on which types of natural disasters cause the greatest yearly damage on average.</p>
 <pre class="r"><code># gather aggregate table for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
