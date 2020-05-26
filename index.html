@@ -396,7 +396,7 @@ natural_disaster_count &lt;-
 
 # gather natural disaster USD damages
 natural_disaster_damage &lt;-
-  read.csv(&quot;data/kaggle_natural_disaster/economic-damage-from-natural-disasters.csv&quot;,
+  read.csv(&quot;data/kaggle_natural_disaster/damage-from-natural-disasters.csv&quot;,
            stringsAsFactors = FALSE)</code></pre>
 <p>We then clean up and combine the individual dataframes to get our final datasets that we will be using in our further analyses.</p>
 <pre class="r"><code># DATASET 1
@@ -442,6 +442,7 @@ temp_summary_info</code></pre>
 <p>In 1988, Dr. James Hansen <a href="https://www.nytimes.com/1988/06/24/us/global-warming-has-begun-expert-tells-senate.html">testified to Congress</a> that global warming was “99 percent certain” and that the world needed to take action to prevent climate disaster. His testimony put a spotlight on the topic of climate change, and since then, climate change has been an important issue. This important year marks the point at which the American public became aware of the dangers of climate change and realized that action needed to be taken.</p>
 <p>As such, we find it important to examine this dataset via two angles, before or during 1988 and after 1988, and identify the countries with the highest average land temperatures to examine potential impacts of his speech. Considering years before and including 1988, the country with the highest average temperature was <strong>Kuwait</strong> with an average land temperature of <strong>37.6 ˚C</strong> as measured for the monthly average land temperature of the 7th month of 1921. Considering years after 1988, the country with the highest average temperature was <strong>Kuwait</strong> with an average land temperature of <strong>38.8 ˚C</strong> as measured for the monthly average land temperature of the 7th month of 2012. Interestingly, Kuwait is the country that holds the highest monthly average land temperature for both before or during 1988 and after 1988 even though it does not exactly land on the equator. Unfortunately, it appears that Dr. James Hansen’s speech did not halt or reverse the impact of climate change. Furthermore, while considering years before or during 1988 the highest temperature was recorded in 1921. If we were expecting temperatures to continously increase over time we should expect the highest temperatures in the before or during 1988 time range to occur near 1988, yet it occurs in 1921 more than 60 years before our cutoff. Perhaps there was a fluke natural event that caused the monthly temperature to shoot up, but this is all just speculation and we cannot be too sure of any hypothesis without further testing. However, for the post 1988 time range, our highest monthly mean land temperature recording was in 2012 which is fairly close to the cutoff of 2013, our latest year in that time range, which does correspond with the idea that a continous increase in temperature over time should place the highest temperature measurment as late as possible. Of note, is the month of all of these measurments, all three (all years, before or during 1988, and after 1988) of these time ranges have their highest measurments in July, the 7th month, as such it may be interesting to group by the year and average the temperature across months to mitigate monthly variation and examine if the spike in July temperature also indicates with an increase in the yearly temperature.</p>
 <hr />
+<p>We can then gather some summary information, shown below, from the second dataset, count and damage caused by natural disasters along with their associated global land temperatures. Similarly to the previous summary information we look at the <em>number of observations</em> in this dataset along with its breadth in terms of <em>coverage by years</em>. Furthermore, we find the years with the <em>highest economic damage</em> by natural disasters, <em>highest number of natural disasters</em>, <em>highest natural disaster impact</em> (defined as damage / impact for each naturla disaster event) and years with the <em>highest associated global mean land temperature</em>. To do this, we only look only at the rows with <em>All natural disasters</em> as the <code>disaster</code> type in order to give a broad overview of all natural disasters without having to compare between all of the individual natural disasters.</p>
 <pre class="r"><code># gather summary info for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_summary_info &lt;- get_summary_info_disaster(natural_disaster_data)
@@ -453,11 +454,11 @@ disaster_summary_info</code></pre>
 ##   max_year min_year
 ## 1     2015     1900
 ## 
-## $year_highest_economic_damage
-##                disaster year       damage count mean_land_ocean_temp
-## 1 All natural disasters 2011 364093168000   334              15.7695
+## $year_highest_temp
+##                disaster year      damage count mean_land_ocean_temp
+## 1 All natural disasters 2015 84120138000   380             16.05858
 ##   mean_land_temp
-## 1          9.516
+## 1          9.831
 ## 
 ## $year_highest_count
 ##                disaster year       damage count mean_land_ocean_temp
@@ -465,20 +466,18 @@ disaster_summary_info</code></pre>
 ##   mean_land_temp
 ## 1       9.700917
 ## 
-## $year_highest_temp
-##                disaster year      damage count mean_land_ocean_temp
-## 1 All natural disasters 2015 84120138000   380             16.05858
+## $year_highest_economic_damage
+##                disaster year       damage count mean_land_ocean_temp
+## 1 All natural disasters 2011 364093168000   334              15.7695
 ##   mean_land_temp
-## 1          9.831
+## 1          9.516
 ## 
 ## $year_highest_impact
 ##                disaster year       damage count mean_land_ocean_temp
 ## 1 All natural disasters 2011 364093168000   334              15.7695
 ##   mean_land_temp     impact
 ## 1          9.516 1090099305</code></pre>
-<p>Our second dataset, which combines natural disasters and global temperatures, has 534 descriptions of yearly disasters. The range of years is 1900 to 2015.</p>
-<p>The year with the highest global temperature was 2015 with a temperature of 16.1 degrees Celsius.</p>
-<p>The year with the most natural disasters was 2005, with a total of 432 disasters. The year with the most economic damage due to natural disasters was 2011. The most impacted year (most economic damage per disaster) was 2011, with an average cost of $1.09 billion per disaster.</p>
+<p>From the above, we can see that our second dataset has 534 descriptions of yearly disasters. Its breadth in terms of a range of years is 1900 to 2015. The year with the highest global mean land and ocean temperature was 2015 with a temperature of 16.1 degrees Celsius. In this case we are using the mean land and ocean temperature as our measurment for the global temperature because it takes a more holisitic view of the global condition rather than just focusing on the mean land temperature. While 2015 may have just been a fluke, this does to seem to point to an increase in global mean temperature over time as the most recent year in the dataset is also the hottest. The year with the most natural disasters was 2005, with a total of 432 disasters. The year with the most economic damage due to natural disasters was 2011. The most impacted year (most economic damage per disaster) was 2011, with an average cost of $1.09 billion per disaster. Interestingly, these three different calculations, though describing similar data and measurments, give three different years. It would be of value to examine what makes these three years so different, and to see if there are any similar characteristics that tie them together to reveal why one has high counts, the other high economic damage, and the last high damage per natural disaster.</p>
 </div>
 <div id="aggregate-table" class="section level2">
 <h2>Aggregate Table</h2>

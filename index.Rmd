@@ -53,7 +53,7 @@ natural_disaster_count <-
 
 # gather natural disaster USD damages
 natural_disaster_damage <-
-  read.csv("data/kaggle_natural_disaster/economic-damage-from-natural-disasters.csv",
+  read.csv("data/kaggle_natural_disaster/damage-from-natural-disasters.csv",
            stringsAsFactors = FALSE)
 ```
 
@@ -92,18 +92,16 @@ As such, we find it important to examine this dataset via two angles, before or 
 
 --------
 
+We can then gather some summary information, shown below, from the second dataset, count and damage caused by natural disasters along with their associated global land temperatures. Similarly to the previous summary information we look at the *number of observations* in this dataset along with its breadth in terms of *coverage by years*. Furthermore, we find the years with the *highest economic damage* by natural disasters, *highest number of natural disasters*, *highest natural disaster impact* (defined as damage / impact for each naturla disaster event) and years with the *highest associated global mean land temperature*. To do this, we only look only at the rows with *All natural disasters* as the `disaster` type in order to give a broad overview of all natural disasters without having to compare between all of the individual natural disasters.
+
 ```{r}
 # gather summary info for DATASET 2 - natural disaster count, damage,
 #   and associated global temperature
 disaster_summary_info <- get_summary_info_disaster(natural_disaster_data)
 disaster_summary_info
 ```
-Our second dataset, which combines natural disasters and global temperatures, has `r disaster_summary_info$length` descriptions of yearly disasters. The range of years is `r disaster_summary_info$range$min_year` to `r disaster_summary_info$range$max_year`.
 
-The year with the highest global temperature was `r disaster_summary_info$year_highest_temp$year` with a temperature of `r round( disaster_summary_info$year_highest_temp$mean_land_ocean_temp, 1)` degrees Celsius.
-
-The year with the most natural disasters was `r disaster_summary_info$year_highest_count$year`, with a total of `r disaster_summary_info$year_highest_count$count` disasters. The year with the most economic damage due to natural disasters was `r disaster_summary_info$year_highest_economic_damage$year`. The most impacted year (most economic damage per disaster) was `r disaster_summary_info$year_highest_impact$year`, with an average cost of $`r sprintf("%.2f billion", disaster_summary_info$year_highest_impact$impact / 1000000000)` per disaster.
-
+From the above, we can see that our second dataset has `r disaster_summary_info$length` descriptions of yearly disasters. Its breadth in terms of a range of years is `r disaster_summary_info$range$min_year` to `r disaster_summary_info$range$max_year`. The year with the highest global mean land and ocean temperature was `r disaster_summary_info$year_highest_temp$year` with a temperature of `r round( disaster_summary_info$year_highest_temp$mean_land_ocean_temp, 1)` degrees Celsius. In this case we are using the mean land and ocean temperature as our measurment for the global temperature because it takes a more holisitic view of the global condition rather than just focusing on the mean land temperature. While 2015 may have just been a fluke, this does to seem to point to an increase in global mean temperature over time as the most recent year in the dataset is also the hottest. The year with the most natural disasters was `r disaster_summary_info$year_highest_count$year`, with a total of `r disaster_summary_info$year_highest_count$count` disasters. The year with the most economic damage due to natural disasters was `r disaster_summary_info$year_highest_economic_damage$year`. The most impacted year (most economic damage per disaster) was `r disaster_summary_info$year_highest_impact$year`, with an average cost of $`r sprintf("%.2f billion", disaster_summary_info$year_highest_impact$impact / 1000000000)` per disaster. Interestingly, these three different calculations, though describing similar data and measurments, give three different years. It would be of value to examine what makes these three years so different, and to see if there are any similar characteristics that tie them together to reveal why one has high counts, the other high economic damage, and the last high damage per natural disaster.
 
 
 ## Aggregate Table

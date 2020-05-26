@@ -57,11 +57,12 @@ get_summary_info_disaster <- function(dataset) {
   result$range <- dataset %>%
     summarize(max_year = max(year, na.rm = TRUE),
               min_year = min(year, na.rm = TRUE))
-  # year with most damage
-  result$year_highest_economic_damage <-
+  # year with highest temp
+  result$year_highest_temp <-
     dataset %>%
     filter(disaster == "All natural disasters") %>%
-    filter(damage == max(damage, na.rm = TRUE)) %>%
+    filter(mean_land_ocean_temp ==
+             max(mean_land_ocean_temp, na.rm = TRUE)) %>%
     slice(1)
   # year with most disasters
   result$year_highest_count <-
@@ -69,12 +70,11 @@ get_summary_info_disaster <- function(dataset) {
     filter(disaster == "All natural disasters") %>%
     filter(count == max(count, na.rm = TRUE)) %>%
     slice(1)
-  # year with highest temp
-  result$year_highest_temp <-
+  # year with most damage
+  result$year_highest_economic_damage <-
     dataset %>%
     filter(disaster == "All natural disasters") %>%
-    filter(mean_land_ocean_temp ==
-             max(mean_land_ocean_temp, na.rm = TRUE)) %>%
+    filter(damage == max(damage, na.rm = TRUE)) %>%
     slice(1)
   # year with most damage per disaster
   result$year_highest_impact <-
