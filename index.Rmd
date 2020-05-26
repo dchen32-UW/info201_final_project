@@ -29,9 +29,12 @@ library(knitr)
 ```
 
 ## Introduction
-This project will focus on global climate change impacts and consider temperature changes as well as natural disaster events. We aim to visualize trends in global disasters and temperature data. This will help illuminate areas that have been impacted by climate change the most. We hope that this project will lead to greater awareness of the extent of climate change impacts as well as an understanding of which areas need the most attention and resources for combating the effects of climate change.
+
+This project will focus on the impacts of **global climate change** by considering *temperature changes* and changes in *natural disaster events*. We aim to visualize trends in global disasters and temperature data to reveal potential solutions to mitigate and reverse its impacts. Furthermore, our analysis will help illuminate areas that have been differentially impacted by climate change that will allow us to preferentially allocate resources. We hope that this project will lead to greater awareness of the extent of climate change impacts as well as an understanding of which areas need the most attention and resources for combating the effects of climate change. In our previous brainstorming assignment we gathered three different dataset sources and in this midpoint deliverable we will be focusing on the [**temperature data on a global and country level dataset**](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data) and the [**yearly counts and economic damage of natural disasters dataset**](https://www.kaggle.com/dataenergy/natural-disaster-data#number-of-natural-disaster-events.csv) (the dataset names link to the original websites that host the dataset). In the following *data cleaning* section we will go over how we combine these datasets and extract different subsets of data to do further analyses.
+
 
 ## Data Cleaning
+
 We will be examining **two datasets** for this deliverable. The first consists of *yearly average land temperatures per country*. The other consists of a combination of *yearly global average land temperatures* and *yearly count and total damages of natural disaster events*. We have already gathered the necessary data cleaning functions in `{r setup}` from `scripts/data_cleaning.R` and below we first gather all of the seperate csv files and load them in as dataframes.
 ```{r, cache=TRUE}
 # DATASET 1
@@ -105,6 +108,7 @@ From the above, we can see that our second dataset has `r disaster_summary_info$
 
 
 ## Aggregate Table
+
 Next, we look at our dataset 1, the average land temperature, via an aggregate table, shown below, to examine how temperatures differed and changed across time. To examine this dataset we consider three chunks of time, an **ancient** time period from *1842 to 1872*, a **past** time period from *1912 to 1942*, and a **present** time period from *1982 to 2012*. We will examine the average temperatures in ˚C for each of these time period and how temperature has *changed between the past and ancient, and the present and past time periods*. Then we can examine the *overall change in temperature*, of which we will sort this dataframe by to look at countries that were most impact (i.e. changed the most across time). Furthermore we compute the *difference between the change in temperature from the past to present time periods and the change in temperature from the ancient to past time periods*. This allows us to see if, recently, temperature have been changing faster than normal.
 
 ```{r}
