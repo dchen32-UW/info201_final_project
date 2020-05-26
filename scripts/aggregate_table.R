@@ -62,6 +62,11 @@ get_aggr_table_temp <- function(temp_data) {
                              "Recent Change in Mean Land Temperature (˚C)",
                              "Overall Change in Mean Land Temperature (˚C)",
                              "Change Between Recent and Previous Changes (˚C")
+  # round all of the numbers
+  differences <-
+    differences %>%
+    mutate_if(is.numeric, round, 3)
+  
   return(differences)
 }
 
@@ -122,6 +127,10 @@ get_aggr_table_disaster <- function(nd_data) {
       "Difference in Impact (billions of USD / count)",
       "Difference in Mean Land Temperature (˚C)",
       "Difference in Mean Land+Ocean Temperature (˚C)")
+  # round all of the numbers
+  differences <-
+    differences %>%
+    mutate_if(is.numeric, round, 3)
   
   return(differences)
 }
