@@ -1,8 +1,20 @@
 library(shiny)
 library(shinyWidgets)
+library(plotly)
 
-# import constants for background color
+# import constants
 source("scripts/shiny_utils/constants.R")
+# import text to write
+main_panel_para_1 <-
+  readChar("texts/p1_para1.txt", file.info("texts/p1_para1.txt")$size)
+main_panel_para_2 <-
+  readChar("texts/p1_para2.txt", file.info("texts/p1_para2.txt")$size)
+main_panel_para_3 <-
+  readChar("texts/p1_para3.txt", file.info("texts/p1_para3.txt")$size)
+main_panel_para_4 <-
+  readChar("texts/p1_para4.txt", file.info("texts/p1_para4.txt")$size)
+main_panel_para_5 <-
+  readChar("texts/p1_para5.txt", file.info("texts/p1_para5.txt")$size)
 
 # page one : country relationships and change of temperature
 page_one <- tabPanel(
@@ -14,21 +26,16 @@ page_one <- tabPanel(
   ),
   mainPanel(
     h3("Correlations Between Countries for All Recorded Temperatures"),
-    p(
-    paste0("In order to understand the relationships between the countries in
-     our dataset 1, monthly mean land temperature per country, we compute and
-     plot a correlation matrix of all of the countries in our dataset, along
-     with their associated \"mega regions\" which are simply large combined
-     groups of countries. We calculate this correlation matrix using all
-     available time points and ", heatmap_corr_metric, "'s correlation metric.
-     Furthermore, we utilize the R package hclust to group together similar
-     countries and grouped the plotted correlation matrix based on such
-     clustering. As geographically similar regions are likely to have similar
-     temperatures across time we wanted to see whether we would see clustering
-     of the \"mega regions\" so we also plotted each country's respective
-     mega region as an annotation of the columns.")),
+    p(main_panel_para_1),
+    plotlyOutput(outputId = "world_map_mega_regions"),
+    p(main_panel_para_2),
     plotOutput(outputId = "all_ct_temp_mega_corrmap"),
-    p(paste0("As shown above, ")),
-    plotOutput(outputId = "all_ct_temp_grouped_corrmap")
+    p(main_panel_para_3),
+    plotlyOutput(outputId = "world_map_grouped"),
+    p(main_panel_para_4),
+    plotOutput(outputId = "all_ct_temp_grouped_corrmap"),
+    p(main_panel_para_5),
+    plotOutput(outputId = "all_ct_emd_mega_corrmap"),
+    plotOutput(outputId = "all_ct_emd_grouped_corrmap")
   )
 )
