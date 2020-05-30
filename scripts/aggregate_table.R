@@ -1,13 +1,19 @@
 library(dplyr)
 library(countrycode)
 
+# compute aggregate table for DATASET 1, gathering mean land temperatures
+#   for three time periods, 1842-1872, 1912-1942, 1982-2012, and via groupby
+#   utilizing the "countrycode" library to combine continent level
+#   information
+# parameters:
+#   - temp_data = dataframe of the average temperature data by country
 get_aggr_table_temp <- function(temp_data) {
   # get continent information
   temp_data <-
     temp_data %>%
     mutate(country = region) %>%
     mutate(
-      region = 
+      region =
         temp_data %>%
         pull(region) %>%
         countrycode("country.name",
@@ -66,24 +72,35 @@ get_aggr_table_temp <- function(temp_data) {
   differences <-
     differences %>%
     mutate_if(is.numeric, round, 3)
-  
+
   return(differences)
 }
 
+# compute aggregate table for DATASET 2, gathering the change in the count
+#   and damage of natural disasters along with their associated global land
+#   and land+ocean temperatures
+# parameters:
+#   - nd_data = dataframe of the natural disaster counts and damages along
+#               with the associated yearly global land and land+ocean
+#               temperatures in Celsius
 get_aggr_table_disaster <- function(nd_data) {
   # calculate the mean natural disasters + global temp data
   #   from 1982 to 2012 the most recent 30 years
-  present_30_years <- 
+  present_30_years <-
     natural_disaster_data %>%
     filter(year >= 1982 & year <= 2012) %>%
     mutate(impact = (damage / 1000000000) / count) %>%
     group_by(disaster) %>%
-    summarize(mean_count_present = mean(count, na.rm = TRUE),
-              mean_damage_present = mean(damage, na.rm = TRUE),
-              mean_impact_present = mean(impact, na.rm = TRUE),
-              mean_land_ocean_temp_present = mean(mean_land_ocean_temp, na.rm = TRUE),
-              mean_land_temp_present = mean(mean_land_temp, na.rm = TRUE))
-  
+    summarize(mean_count_present =
+                mean(count, na.rm = TRUE),
+              mean_damage_present =
+                mean(damage, na.rm = TRUE),
+              mean_impact_present =
+                mean(impact, na.rm = TRUE),
+              mean_land_ocean_temp_present =
+                mean(mean_land_ocean_temp, na.rm = TRUE),
+              mean_land_temp_present =
+                mean(mean_land_temp, na.rm = TRUE))
   # calculate the mean natural disasters + global temp data
   #   from 1912 to 1942 the oldest 30 years
   past_30_years <-
@@ -91,11 +108,16 @@ get_aggr_table_disaster <- function(nd_data) {
     filter(year >= 1912 & year <= 1942) %>%
     mutate(impact = (damage / 1000000000) / count) %>%
     group_by(disaster) %>%
-    summarize(mean_count_past = mean(count, na.rm = TRUE),
-              mean_damage_past = mean(damage, na.rm = TRUE),
-              mean_impact_past = mean(impact, na.rm = TRUE),
-              mean_land_ocean_temp_past = mean(mean_land_ocean_temp, na.rm = TRUE),
-              mean_land_temp_past = mean(mean_land_temp, na.rm = TRUE))
+    summarize(mean_count_past =
+                mean(count, na.rm = TRUE),
+              mean_damage_past =
+                mean(damage, na.rm = TRUE),
+              mean_impact_past =
+                mean(impact, na.rm = TRUE),
+              mean_land_ocean_temp_past =
+                mean(mean_land_ocean_temp, na.rm = TRUE),
+              mean_land_temp_past =
+                mean(mean_land_temp, na.rm = TRUE))
   # join them together and calculate differences
   differences <-
     left_join(past_30_years,
@@ -106,7 +128,7 @@ get_aggr_table_disaster <- function(nd_data) {
            damage_diff =
              (mean_damage_present - mean_damage_past)
            / 1000000000,
-           impact_diff = 
+           impact_diff =
              mean_impact_present - mean_impact_past,
            land_ocean_temp_diff =
              mean_land_ocean_temp_present - mean_land_ocean_temp_past,
@@ -131,6 +153,6 @@ get_aggr_table_disaster <- function(nd_data) {
   differences <-
     differences %>%
     mutate_if(is.numeric, round, 3)
-  
+
   return(differences)
 }
