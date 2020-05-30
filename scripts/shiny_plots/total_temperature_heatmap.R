@@ -5,6 +5,9 @@ library(tidyr)
 library(tibble)
 library(countrycode)
 
+# import constants
+source("scripts/shiny_utils/constants.R")
+
 # utilizes the precalculated correlation matrix to assign the
 #   mega regions
 # parameters:
@@ -33,7 +36,7 @@ get_annotation_dataframe <- function(temp_data, res) {
 }
 
 # calculates the correlation matrix for the given dataset using
-#   spearman"s correlation metric
+#   correlation metric in the constants.R file in shiny utils'
 # parameters:
 #   - temp_data : dataframe of the average temperature per country
 # returns:
@@ -51,14 +54,16 @@ get_correlation_matrix <- function(temp_data) {
   country_temp_data <- country_temp_data[complete.cases(country_temp_data), ]
 
   # get correlation matrix
-  res <- rcorr(x = as.matrix(country_temp_data), type = "spearman")
+  res <- rcorr(x = as.matrix(country_temp_data),
+               type = heatmap_corr_metric)
 
   return(res)
 }
 
 # plots a clustered heatmap of dataset 1, average land temperature
-#   by country, utilizing Spearman"s correlation and hclust, with
-#   the mega regions, combined groups of countries, colored on
+#   by country, utilizing correlation metric in the constants.R file
+#   in shiny utils' and hclust, with the mega regions, combined groups
+#   of countries, colored on
 # parameters:
 #   - temp_data : dataframe of the average temperature per country
 all_country_temp_heatmap <- function(temp_data) {
@@ -79,7 +84,7 @@ all_country_temp_heatmap <- function(temp_data) {
   res <- get_correlation_matrix(temp_data)
 
   # get color palette
-  col <- colorRampPalette(c("blue", "cornsilk", "red"))(20)
+  col <- colorRampPalette(c(heatmap_min, heatmap_middle, heatmap_max))(20)
 
   # compile into annotation dataframe
   annotations <- get_annotation_dataframe(temp_data, res)
@@ -101,12 +106,17 @@ all_country_temp_heatmap <- function(temp_data) {
   heatmap3(x = res$r, col = col, symm = TRUE,
            ColSideColors = mega_regions_colors$mega_regions,
            ColSideLabs = "Mega Regions",
+           method = "ward.D2",
            legendfun = function()
              showLegend(legend = c(names(colors), "",
                                    "Negative Correlation",
                                    "No Correlation",
                                    "Positive Correlation"),
-                        col = c(colors, "white", "blue", "cornsilk", "red"),
+                        col = c(colors,
+                                background_color,
+                                heatmap_min,
+                                heatmap_middle,
+                                heatmap_max),
                         cex = 0.75,
                         x = "top"))
 

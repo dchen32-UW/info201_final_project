@@ -4,6 +4,8 @@ library(shiny)
 source("scripts/shiny_plots/total_temperature_heatmap.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
+# import constants for background color
+source("scripts/shiny_utils/constants.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
@@ -12,7 +14,8 @@ my_server <- function(input, output) {
   
   # get heatmap of DATASET 1 using all recorded temperature with
   #   mega regions colored on along with clustering
-  output$all_country_temp_heatmap <- renderPlot({
-    all_country_temp_heatmap(avg_country_temp_data)
-  })
+  output$all_country_temp_heatmap <- renderPlot(
+    all_country_temp_heatmap(avg_country_temp_data),
+    bg = background_color
+  )
 }
