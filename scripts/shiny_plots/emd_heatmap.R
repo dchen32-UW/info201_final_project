@@ -1,3 +1,7 @@
+# import constants
+source("scripts/shiny_utils/constants.R")
+
+
 # assign mega regions
 glo_temp <-
   glo_temp %>%

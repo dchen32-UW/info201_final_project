@@ -60,13 +60,76 @@ get_correlation_matrix <- function(temp_data) {
   return(res)
 }
 
+get_mega_regions <- function(temp_data, annotations) {
+  # set empty list of mega region annotations
+  group_annotations <- list()
+  # get unique mega regions
+  unique_groups <-
+    annotations %>%
+    pull(mega_regions) %>%
+    unique()
+  # get colors
+  colors <- brewer.pal(n = length(unique_groups), name = "Set2")
+  # assign each mega region to a color
+  names(colors) <- unique_groups
+  # add colors to result
+  group_annotations$colors <- colors
+  # assign all regions a mega region color
+  group_colors <-
+    annotations %>%
+    mutate(groups = colors[mega_regions])
+  # add mega_regions_colors to result
+  group_annotations$group_colors <- group_colors
+
+  return(group_annotations)
+}
+
+get_group_regions <- function(res, annotations) {
+  # calculate distance
+  res_dist <- as.dist(1 - cor(t(res$r), use = "pa"))
+  # perform clustering
+  res_hclust <- hclust(res_dist, method = "ward.D2")
+  # get clusters with a cut in the tree at 0.5
+  res_cutree <- cutree(res_hclust, h = 0.5)
+  # set empty list of group annotations
+  group_annotations <- list()
+  # get groups
+  unique_groups <- unique(res_cutree)
+  # get colors
+  colors <- brewer.pal(n = length(unique_groups), name = "Set2")
+  # assign each mega region to a color
+  names(colors) <- unique_groups
+  # add colors to result
+  group_annotations$colors <- colors
+  # assign all regions a mega region color
+  group_colors <- annotations
+  group_colors["groups"] <- row.names(annotations)
+  group_colors <-
+    group_colors %>%
+    mutate(groups = res_cutree[groups]) %>%
+    mutate(groups = colors[groups]) %>%
+    select(groups)
+  row.names(group_colors) <- row.names(annotations)
+  # add groups_colors to result
+  group_annotations$group_colors <- group_colors
+  # rename colorsz
+  new_names <- c()
+  for (name in names(colors)) {
+    new_names <- c(new_names, paste("Group", name))
+  }
+  names(colors) <- new_names
+
+  return(group_annotations)
+}
+
 # plots a clustered heatmap of dataset 1, average land temperature
 #   by country, utilizing correlation metric in the constants.R file
 #   in shiny utils' and hclust, with the mega regions, combined groups
 #   of countries, colored on
 # parameters:
 #   - temp_data : dataframe of the average temperature per country
-all_country_temp_heatmap <- function(temp_data) {
+#   - anno_group : groups of countries to color on
+all_country_temp_corrmap <- function(temp_data, anno_group) {
   # assign mega regions
   temp_data <-
     temp_data %>%
@@ -89,23 +152,19 @@ all_country_temp_heatmap <- function(temp_data) {
   # compile into annotation dataframe
   annotations <- get_annotation_dataframe(temp_data, res)
 
-  # get unique mega regions
-  unique_mega_regions <-
-    annotations %>%
-    pull(mega_regions) %>%
-    unique()
-  # get colors
-  colors <- brewer.pal(n = length(unique_mega_regions), name = "Set2")
-  # assign each mega region to a color
-  names(colors) <- unique_mega_regions
-  # assign all regions a mega region color
-  mega_regions_colors <-
-    annotations %>%
-    mutate(mega_regions = colors[mega_regions])
+  # do clustering and assing groups based on dendrograms
+  # get group annotations and colors
+  if (anno_group == "Mega Regions") {
+    group_annotations <- get_mega_regions(temp_data, annotations)
+  } else if (anno_group == "Groups") {
+    group_annotations <- get_group_regions(res, annotations)
+  }
+  colors <- group_annotations$colors
+  colsidecolors <- group_annotations$group_colors$groups
 
   heatmap3(x = res$r, col = col, symm = TRUE,
-           ColSideColors = mega_regions_colors$mega_regions,
-           ColSideLabs = "Mega Regions",
+           ColSideColors = colsidecolors,
+           ColSideLabs = anno_group,
            method = "ward.D2",
            legendfun = function()
              showLegend(legend = c(names(colors), "",
@@ -119,5 +178,4 @@ all_country_temp_heatmap <- function(temp_data) {
                                 heatmap_max),
                         cex = 0.75,
                         x = "top"))
-
 }
