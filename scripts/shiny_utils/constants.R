@@ -1,7 +1,7 @@
 library(ggplot2)
 
 # define background color
-background_color <- "lavenderblush"
+background_color <- "#ebebeb"
 # define min, middle, and max colors for heatmaps
 # google search of "matplotlib colors" gives available colors
 heatmap_min <- "blue"
