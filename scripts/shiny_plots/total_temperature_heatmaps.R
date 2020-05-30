@@ -112,12 +112,14 @@ get_group_regions <- function(res, annotations) {
   row.names(group_colors) <- row.names(annotations)
   # add groups_colors to result
   group_annotations$group_colors <- group_colors
-  # rename colorsz
+  # rename colors
   new_names <- c()
   for (name in names(colors)) {
     new_names <- c(new_names, paste("Group", name))
   }
   names(colors) <- new_names
+  # add colors to result
+  group_annotations$colors <- colors
 
   return(group_annotations)
 }
