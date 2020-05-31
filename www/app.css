@@ -18,11 +18,11 @@ span.image_text {
 
 .arrow {
   display: inline-block;
-  font-weight: normal;
+  font-weight: 100;
   font-style: normal;
   margin-top: -90px;
   margin-bottom: -100px;
   font-family: "Times New Roman";
-  font-size: 150px;
+  font-size: 100px;
   transform: scale(1, 0.375);
 }
