@@ -9,6 +9,8 @@ source("scripts/shiny_plots/group_world_maps.R")
 source("scripts/shiny_utils/data_gathering.R")
 # import constants for background color
 source("scripts/shiny_utils/constants.R")
+# Import 
+source("scatter_plot_tab.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
@@ -69,5 +71,18 @@ my_server <- function(input, output) {
     plot <- world_map_groups(avg_country_temp_data, "Groups",
                              "Wasserstein")
     plot
+  })
+  
+  
+  # get scatter plot of disaster counts by year
+  output$disaster_scatter_plot <- renderPlot({
+    plot_data <- disaster_df %>%
+      filter("Entity" == input$disaster_category)
+    
+    plot <- ggplot(
+      data = plot_data,
+      aes(x = input$year_range,
+          y = Number.of.reported.natural.disasters..reported.disasters.)) +
+      geom_point()
   })
 }
