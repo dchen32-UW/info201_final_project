@@ -18,7 +18,7 @@ span.image_text {
 
 .arrow {
   display: inline-block;
-  font-weight: normal;
+  font-weight: 100;
   font-style: normal;
   margin-top: -90px;
   margin-bottom: -100px;
