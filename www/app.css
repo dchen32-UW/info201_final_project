@@ -1,5 +1,6 @@
 div.image_text {
   display: inline-block;
+  text-align: center;
   margin: auto;
 }
 
@@ -8,7 +9,6 @@ span.image_text {
   max-width: 150px;
   word-wrap: normal;
   margin-bottom: -50px;
-  margin-right: -5px;
   font-family: "Courier New";
   font-size: 10px;
   font-weight: bold;

@@ -62,6 +62,46 @@ compute_emds <- function(hists, countries) {
   return(df_dist)
 }
 
+get_emd_changes_corr_groups <- function(temp_data, anno_group) {
+  # assign mega regions
+  temp_data <-
+    temp_data %>%
+    mutate(
+      mega_region =
+        temp_data %>%
+        pull(region) %>%
+        countrycode("country.name",
+                    "region")
+    )
+  # remove NA values, basically countries that did not match to continents
+  temp_data <- temp_data[complete.cases(temp_data), ]
+  
+  # get unique countries
+  countries <-
+    temp_data %>%
+    pull(region) %>%
+    unique()
+  
+  # compute histograms for each 30 year range of 70 year change
+  df_hist <- compute_hists(temp_data, countries)
+  
+  # compute wasserstein distance matrix
+  df_dist <- compute_emds(df_hist, countries)
+  
+  # compile into annotation dataframe
+  annotations <- get_annotation_dataframe(temp_data, df_dist)
+  
+  # do clustering and assing groups based on dendrograms
+  # get group annotations and colors
+  if (anno_group == "Mega Regions") {
+    group_annotations <- get_mega_regions(temp_data, annotations)
+  } else if (anno_group == "Groups") {
+    group_annotations <- get_group_regions(df_dist, annotations)
+  }
+  
+  return(group_annotations)
+}
+
 all_country_emd_corrmap <- function(temp_data, anno_group) {
   # assign mega regions
   temp_data <-

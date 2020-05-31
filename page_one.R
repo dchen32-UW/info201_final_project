@@ -32,16 +32,18 @@ page_one <- tabPanel(
   mainPanel(
     h3("Correlations Between Countries for All Recorded Temperatures"),
     p(main_panel_para_1),
-    HTML(wasserstein_earths),
-    plotlyOutput(outputId = "world_map_mega_regions"),
     p(main_panel_para_2),
-    plotOutput(outputId = "all_ct_temp_mega_corrmap"),
     p(main_panel_para_3),
-    plotlyOutput(outputId = "world_map_grouped"),
     p(main_panel_para_4),
-    plotOutput(outputId = "all_ct_temp_grouped_corrmap"),
     p(main_panel_para_5),
+    HTML(wasserstein_earths),
+    plotlyOutput(outputId = "world_map_temp_mega_regions"),
+    plotOutput(outputId = "all_ct_temp_mega_corrmap"),
+    plotlyOutput(outputId = "world_map_temp_grouped"),
+    plotOutput(outputId = "all_ct_temp_grouped_corrmap"),
+    plotlyOutput(outputId = "world_map_emd_mega_regions"),
     plotOutput(outputId = "all_ct_emd_mega_corrmap"),
+    plotlyOutput(outputId = "world_map_emd_grouped"),
     plotOutput(outputId = "all_ct_emd_grouped_corrmap")
   )
 )
