@@ -141,6 +141,32 @@ get_group_regions <- function(dist, annotations) {
   return(group_annotations)
 }
 
+# gets a clean data list containing a clean temperature dataframe
+#   list of countries to look over, base annotation dataframe
+#   and requested correlation distance matrix
+# parameters:
+#   - temp_data : dataframe of the monthly avg land temperatures per country
+# returns:
+#   - data_list : list of data needed to plot heatmap with correlation matrix
+get_cleaned_corr_temp_data <- function(temp_data) {
+  # create empty list to store data
+  data_list <- list()
+  # assign to data list
+  data_list$temp_data <- temp_data
+
+  # get correlation matrix
+  res <- get_correlation_matrix(temp_data)
+  # assign to data list
+  data_list$res <- res
+
+  # compile into annotation dataframe
+  annotations <- get_annotation_dataframe(temp_data, res$r)
+  # assign to data list
+  data_list$annotations <- annotations
+
+  return(data_list)
+}
+
 # get the annotation dataframe for any group, this is more of a subsetted
 #   copy paste of the below but is useful for outputting annotations to outside
 #   sources without the initial code in all_country_temp_corrmap
@@ -151,25 +177,13 @@ get_group_regions <- function(dist, annotations) {
 #   - group_annotations : contains
 #       - dataframe with row names as countries and a column for requested
 #         groups and the associated colors
-get_all_temp_corr_groups <- function(temp_data, anno_group) {
-  # assign mega regions
-  temp_data <-
-    temp_data %>%
-    mutate(
-      mega_region =
-        temp_data %>%
-        pull(region) %>%
-        countrycode("country.name",
-                    "region")
-    )
-  # remove NA values, basically countries that did not match to continents
-  temp_data <- temp_data[complete.cases(temp_data), ]
-
+get_all_temp_corr_groups <- function(data_list, anno_group) {
+  # get temp_data
+  temp_data <- data_list$temp_data
   # get correlation matrix
-  res <- get_correlation_matrix(temp_data)
-
-  # compile into annotation dataframe
-  annotations <- get_annotation_dataframe(temp_data, res$r)
+  res <- data_list$res
+  # get annotation dataframe
+  annotations <- data_list$annotations
 
   # do clustering and assing groups based on dendrograms
   # get group annotations and colors
@@ -189,28 +203,16 @@ get_all_temp_corr_groups <- function(temp_data, anno_group) {
 # parameters:
 #   - temp_data : dataframe of the average temperature per country
 #   - anno_group : groups of countries to color on
-all_country_temp_corrmap <- function(temp_data, anno_group) {
-  # assign mega regions
-  temp_data <-
-    temp_data %>%
-    mutate(
-      mega_region =
-        temp_data %>%
-        pull(region) %>%
-        countrycode("country.name",
-                    "region")
-    )
-  # remove NA values, basically countries that did not match to continents
-  temp_data <- temp_data[complete.cases(temp_data), ]
-
+all_country_temp_corrmap <- function(data_list, anno_group) {
+  # get temp_data
+  temp_data <- data_list$temp_data
   # get correlation matrix
-  res <- get_correlation_matrix(temp_data)
+  res <- data_list$res
+  # get annotation dataframe
+  annotations <- data_list$annotations
 
   # get color palette
   col <- colorRampPalette(c(heatmap_min, heatmap_middle, heatmap_max))(20)
-
-  # compile into annotation dataframe
-  annotations <- get_annotation_dataframe(temp_data, res$r)
 
   # do clustering and assing groups based on dendrograms
   # get group annotations and colors

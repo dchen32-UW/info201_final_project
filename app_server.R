@@ -16,31 +16,37 @@ my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
   # get DATASET 1 - average temperature per country on a monthly basis
   avg_country_temp_data <- get_avg_country_temp_data()
-  
+  # get filtered DATASET 1 with mega regions
+  mega_region_temp_data <- get_mega_region_temp_data(avg_country_temp_data)
+  # precompute the correlation data for DATASET 1 temperature
+  corr_temp_data_list <- get_cleaned_corr_temp_data(mega_region_temp_data)
+  # precompute the correlation data for DATASET 1 emd
+  corr_emd_data_list <- get_cleaned_corr_emd_data(mega_region_temp_data)
+
   # get corrmatrix of DATASET 1 using all recorded temperature with
   #   mega regions colored on along with clustering
   output$all_ct_temp_mega_corrmap <- renderPlot(
-    all_country_temp_corrmap(avg_country_temp_data, "Mega Regions"),
+    all_country_temp_corrmap(corr_temp_data_list, "Mega Regions"),
     bg = background_color
   )
 
   # get corrmatrix of DATASET 1 using all recorded temperature with
   #   hclustered groups colored on along with clustering
   output$all_ct_temp_grouped_corrmap <- renderPlot(
-    all_country_temp_corrmap(avg_country_temp_data, "Groups"),
+    all_country_temp_corrmap(corr_temp_data_list, "Groups"),
     bg = background_color
   )
 
   # get world map for DATASET 1 and mega regions
   output$world_map_temp_mega_regions <- renderPlotly({
-    plot <- world_map_groups(avg_country_temp_data, "Mega Regions",
+    plot <- world_map_groups(corr_temp_data_list, "Mega Regions",
                              "Correlation")
     plot
   })
 
   # get world map for DATASET 1 and hclustered groups
   output$world_map_temp_grouped <- renderPlotly({
-    plot <- world_map_groups(avg_country_temp_data, "Groups",
+    plot <- world_map_groups(corr_temp_data_list, "Groups",
                              "Correlation")
     plot
   })
@@ -48,27 +54,27 @@ my_server <- function(input, output) {
   # get corrmatrix of DATASET 1 using all emds between 30 year ranges
   #   and a 70 year difference with mega regions
   output$all_ct_emd_mega_corrmap <- renderPlot(
-    all_country_emd_corrmap(avg_country_temp_data, "Mega Regions"),
+    all_country_emd_corrmap(corr_emd_data_list, "Mega Regions"),
     bg = background_color
   )
   
   # get corrmatrix of DATASET 1 using all emds between 30 year ranges
   #   and a 70 year difference with mega regions with hclustered groups
   output$all_ct_emd_grouped_corrmap <- renderPlot(
-    all_country_emd_corrmap(avg_country_temp_data, "Groups"),
+    all_country_emd_corrmap(corr_emd_data_list, "Groups"),
     bg = background_color
   )
 
   # get world map for DATASET 1 and mega regions for emds
   output$world_map_emd_mega_regions <- renderPlotly({
-    plot <- world_map_groups(avg_country_temp_data, "Mega Regions",
+    plot <- world_map_groups(corr_emd_data_list, "Mega Regions",
                              "Wasserstein")
     plot
   })
   
   # get world map for DATASET 1 and hclustered groups for emds
   output$world_map_emd_grouped <- renderPlotly({
-    plot <- world_map_groups(avg_country_temp_data, "Groups",
+    plot <- world_map_groups(corr_emd_data_list, "Groups",
                              "Wasserstein")
     plot
   })
