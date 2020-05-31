@@ -16,6 +16,11 @@ main_panel_para_4 <-
 main_panel_para_5 <-
   readChar("texts/p1_para5.txt", file.info("texts/p1_para5.txt")$size)
 
+# get wasserstein images
+wasserstein_earths <-
+  readChar("html/wasserstein_earths.html",
+           file.info("html/wasserstein_earths.html")$size)
+
 # page one : country relationships and change of temperature
 page_one <- tabPanel(
   "Temperature Change Across Time",
@@ -27,6 +32,7 @@ page_one <- tabPanel(
   mainPanel(
     h3("Correlations Between Countries for All Recorded Temperatures"),
     p(main_panel_para_1),
+    HTML(wasserstein_earths),
     plotlyOutput(outputId = "world_map_mega_regions"),
     p(main_panel_para_2),
     plotOutput(outputId = "all_ct_temp_mega_corrmap"),

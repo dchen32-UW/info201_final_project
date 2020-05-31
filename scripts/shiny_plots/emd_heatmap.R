@@ -86,7 +86,7 @@ all_country_emd_corrmap <- function(temp_data, anno_group) {
   df_hist <- compute_hists(temp_data, countries)
 
   # compute wasserstein distance matrix
-  df_dist <- compute_emds(hists, countries)
+  df_dist <- compute_emds(df_hist, countries)
 
   # get color panel
   col <- colorRampPalette(c(heatmap_max, heatmap_middle, heatmap_min))(20)
