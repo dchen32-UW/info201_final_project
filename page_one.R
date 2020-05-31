@@ -34,7 +34,6 @@ page_one <- tabPanel(
   ),
   mainPanel(
     h3("Correlations Between Countries for All Recorded Temperatures"),
-    HTML(wasserstein_earths),
     p(main_panel_para_1),
     plotlyOutput(outputId = "world_map_temp_mega_regions"),
     p(main_panel_para_2),
@@ -45,6 +44,7 @@ page_one <- tabPanel(
     p(main_panel_para_4),
     hr(),
     p(main_panel_para_5),
+    HTML(wasserstein_earths),
     plotlyOutput(outputId = "world_map_emd_mega_regions"),
     plotOutput(outputId = "all_ct_emd_mega_corrmap"),
     plotlyOutput(outputId = "world_map_emd_grouped"),
