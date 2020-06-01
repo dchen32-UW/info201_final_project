@@ -89,8 +89,8 @@ my_server <- function(input, output) {
     plot
   })
   
-  output$temp_change_worldmap <- renderPlotly({
-    # map <-
+  #output$temp_change_worldmap <- renderPlotly({
+    # map <- not sure what plot to use here
     # map
-  })
+  #})
 }
