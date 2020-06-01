@@ -12,12 +12,13 @@ source("scripts/shiny_plots/scatterplot_year_controlled.R")
 source("scripts/shiny_utils/data_gathering.R")
 # import constants
 source("scripts/shiny_utils/constants.R")
+# also import nd_data
 source("scripts/shiny_utils/constants_scatterplot.R")
+# also imports avg_country_temp_data
+source("scripts/shiny_utils/constants_worldmap.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
-  # get DATASET 1 - average temperature per country on a monthly basis
-  avg_country_temp_data <- get_avg_country_temp_data()
   # get filtered DATASET 1 with mega regions
   mega_region_temp_data <- get_mega_region_temp_data(avg_country_temp_data)
   # precompute the correlation data for DATASET 1 temperature
