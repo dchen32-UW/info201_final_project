@@ -37,9 +37,6 @@ get_p2_scatterplot_constants <- function(nd_data) {
   return(constants)
 }
 
-# this stores nd_data_constants and will load it into page two upon import
-nd_data_constants <- get_p2_scatterplot_constants(nd_data)
-
 # plot an interactive scatterplot of the count of natural disasters by time
 scatterplot_by_year <- function(nd_data, categories, time_range) {
   # filter data

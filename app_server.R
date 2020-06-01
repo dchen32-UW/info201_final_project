@@ -10,8 +10,9 @@ source("scripts/shiny_plots/group_world_maps.R")
 source("scripts/shiny_plots/scatterplot_year_controlled.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
-# import constants for background color
+# import constants
 source("scripts/shiny_utils/constants.R")
+source("scripts/shiny_utils/constants_scatterplot.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
@@ -23,8 +24,6 @@ my_server <- function(input, output) {
   corr_temp_data_list <- get_cleaned_corr_temp_data(mega_region_temp_data)
   # precompute the correlation data for DATASET 1 emd
   corr_emd_data_list <- get_cleaned_corr_emd_data(mega_region_temp_data)
-  # get DATASET 2 - integrated global temp, nd count + damage
-  nd_data <- get_nat_disaster_int_data()
 
   # get corrmatrix of DATASET 1 using all recorded temperature with
   #   mega regions colored on along with clustering
@@ -90,7 +89,7 @@ my_server <- function(input, output) {
   })
   
   output$temp_change_worldmap <- renderPlotly({
-    # map <-
-    # map
+    plot <- ggplotly(ggplot())
+    plot
   })
 }

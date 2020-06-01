@@ -7,12 +7,12 @@ page_three_temp_change <- tabPanel(
     sliderInput(
       inputId = "two_years_range",
       label = "Range of Years",
-      #min = what dataset???,
-      #max = what dataset???,
-      #value = c(min, max)
+      min = 0,
+      max = 1,
+      value = c(0, 1)
+    ),
+    mainPanel(
+      plotlyOutput(outputId = "temp_change_worldmap")
     )
-  ),
-  mainPanel(
-    plotlyOutput(outputId = "temp_change_worldmap")
   )
 )

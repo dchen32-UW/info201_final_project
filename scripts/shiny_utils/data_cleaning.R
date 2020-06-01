@@ -39,7 +39,7 @@ clean_kaggle_glo_temp_data <- function(glo_temp_data) {
   glo_temp_data <-
     glo_temp_data %>%
     group_by(year) %>%
-    summarize(mean_land_ocean_temp =
+    summarise(mean_land_ocean_temp =
                 mean(LandAndOceanAverageTemperature,
                      na.rm = TRUE),
               mean_land_temp =
