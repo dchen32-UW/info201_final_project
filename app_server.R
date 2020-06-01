@@ -88,6 +88,7 @@ my_server <- function(input, output) {
     plot
   })
   
+  # intiate as empty plot for now
   output$temp_change_worldmap <- renderPlotly({
     plot <- ggplotly(ggplot())
     plot
