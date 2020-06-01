@@ -11,5 +11,5 @@ my_ui <- navbarPage(
   "Final Deliverable: Impacts of Climate Change",
   page_one_heatmaps,
   page_two_scatterplot,
-  #page_three_worldmap
+  page_three_worldmap
 )

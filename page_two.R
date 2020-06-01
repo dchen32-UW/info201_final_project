@@ -2,7 +2,7 @@ library(shiny)
 library(plotly)
 
 # import constants for scatterplot
-source("scripts/shiny_plots/scatterplot_year_controlled.R")
+source("scripts/shiny_utils/constants_scatterplot.R")
 
 page_two_scatterplot <- tabPanel(
   "Disaster Count Per Year",

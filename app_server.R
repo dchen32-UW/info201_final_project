@@ -10,21 +10,21 @@ source("scripts/shiny_plots/group_world_maps.R")
 source("scripts/shiny_plots/scatterplot_year_controlled.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
-# import constants for background color
+# import constants
 source("scripts/shiny_utils/constants.R")
+# also import nd_data
+source("scripts/shiny_utils/constants_scatterplot.R")
+# also imports avg_country_temp_data
+source("scripts/shiny_utils/constants_worldmap.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
-  # get DATASET 1 - average temperature per country on a monthly basis
-  avg_country_temp_data <- get_avg_country_temp_data()
   # get filtered DATASET 1 with mega regions
   mega_region_temp_data <- get_mega_region_temp_data(avg_country_temp_data)
   # precompute the correlation data for DATASET 1 temperature
   corr_temp_data_list <- get_cleaned_corr_temp_data(mega_region_temp_data)
   # precompute the correlation data for DATASET 1 emd
   corr_emd_data_list <- get_cleaned_corr_emd_data(mega_region_temp_data)
-  # get DATASET 2 - integrated global temp, nd count + damage
-  nd_data <- get_nat_disaster_int_data()
 
   # get corrmatrix of DATASET 1 using all recorded temperature with
   #   mega regions colored on along with clustering
@@ -89,9 +89,11 @@ my_server <- function(input, output) {
     plot
   })
   
-  #output$temp_change_worldmap <- renderPlotly({
-    # map <- make a ggplot map w/ avg_country_temp_data
+  # intiate as empty plot for now
+  output$temp_change_worldmap <- renderPlotly({
+    # make a ggplot map w/ avg_country_temp_data
     # that takes input ID "two_years_range"
-    # map
-  #})
+    plot <- ggplotly(ggplot())
+    plot
+  })
 }
