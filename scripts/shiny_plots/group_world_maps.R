@@ -1,16 +1,23 @@
 library(ggplot2)
 library(plotly)
 
-# import relevant functions for the correlation matrices across all time
+# import relevant functions for the correlation matrices
 source("scripts/shiny_plots/total_temperature_heatmaps.R")
+source("scripts/shiny_plots/emd_heatmap.R")
 # import constants
 source("scripts/shiny_utils/constants.R")
 
-world_map_groups <- function(temp_data, anno_group) {
+world_map_groups <- function(data_list, anno_group, corr_calc) {
   # load in world map
   world_data <- map_data("world")
+  # get temp_data
+  temp_data <- data_list$temp_data
   # get list of groups and valid countries
-  anno_df <- get_all_temp_corr_groups(temp_data, anno_group)
+  if (corr_calc == "Correlation") {
+    anno_df <- get_all_temp_corr_groups(data_list, anno_group)
+  } else if (corr_calc == "Wasserstein") {
+    anno_df <- get_emd_changes_corr_groups(data_list, anno_group)
+  }
   countries <- row.names(anno_df$group_colors)
   # color in NA values specially
   num_groups <- length(anno_df$colors)
@@ -19,7 +26,8 @@ world_map_groups <- function(temp_data, anno_group) {
                              "Not Considered")
   # isolate only one year and month in order to minimize the computation
   #   we know that February 1942 contains all countries so we isolate this
-  #   instance and filter for valid countries that contain groups or mega regions
+  #   instance and filter for valid countries that contain groups or
+  #   mega regions
   temp_data_subset <-
     temp_data %>%
     filter(year == 1942) %>%
