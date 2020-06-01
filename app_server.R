@@ -2,15 +2,16 @@ library(shiny)
 library(plotly)
 
 # import plotting functions
+# page 1 plots
 source("scripts/shiny_plots/total_temperature_heatmaps.R")
 source("scripts/shiny_plots/emd_heatmap.R")
 source("scripts/shiny_plots/group_world_maps.R")
+# page 2 plots
+source("scripts/shiny_plots/scatterplot_year_controlled.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
 # import constants for background color
 source("scripts/shiny_utils/constants.R")
-# Import 
-source("scatter_plot_tab.R")
 
 my_server <- function(input, output) {
   # gather all needed data here and pass to relevant functions
@@ -22,6 +23,8 @@ my_server <- function(input, output) {
   corr_temp_data_list <- get_cleaned_corr_temp_data(mega_region_temp_data)
   # precompute the correlation data for DATASET 1 emd
   corr_emd_data_list <- get_cleaned_corr_emd_data(mega_region_temp_data)
+  # get DATASET 2 - integrated global temp, nd count + damage
+  nd_data <- get_nat_disaster_int_data()
 
   # get corrmatrix of DATASET 1 using all recorded temperature with
   #   mega regions colored on along with clustering
@@ -78,17 +81,11 @@ my_server <- function(input, output) {
                              "Wasserstein")
     plot
   })
-  
-  
+
   # get scatter plot of disaster counts by year
-  output$disaster_scatter_plot <- renderPlot({
-    plot_data <- disaster_df %>%
-      filter("Entity" == input$disaster_category)
-    
-    plot <- ggplot(
-      data = plot_data,
-      aes(x = input$year_range,
-          y = Number.of.reported.natural.disasters..reported.disasters.)) +
-      geom_point()
+  output$disaster_scatterplot <- renderPlotly({
+    plot <- scatterplot_by_year(nd_data, input$disasters,
+                                input$time_range)
+    plot
   })
 }

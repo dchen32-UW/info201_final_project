@@ -26,7 +26,7 @@ title <-
          "and Correlations Between Countries")
 
 # page one : country relationships and change of temperature
-page_one <- tabPanel(
+page_one_heatmaps <- tabPanel(
   "Temperature Change Across Time",
   titlePanel(title),
   setBackgroundColor(

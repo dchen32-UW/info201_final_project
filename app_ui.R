@@ -2,11 +2,11 @@ library(shiny)
 
 # import page one : heatmaps and summary descriptions
 source("page_one.R")
-# import scatter plot: disaster count by per year plot
-source("scatter_plot_tab.R")
+# import page two: scatter plot of disaster count by per year plot
+source("page_two.R")
 
 my_ui <- navbarPage(
-  "Final Deliverable [Also Maybe Project Title]",
-  page_one,
-  scatter_plot_tab
+  "Final Deliverable: Impacts of Climate Change",
+  page_one_heatmaps,
+  page_two_scatterplot
 )
