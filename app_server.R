@@ -88,4 +88,9 @@ my_server <- function(input, output) {
                                 input$time_range)
     plot
   })
+  
+  output$temp_change_worldmap <- renderPlotly({
+    # map <-
+    # map
+  })
 }
