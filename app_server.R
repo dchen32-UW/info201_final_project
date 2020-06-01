@@ -91,6 +91,8 @@ my_server <- function(input, output) {
   
   # intiate as empty plot for now
   output$temp_change_worldmap <- renderPlotly({
+    # make a ggplot map w/ avg_country_temp_data
+    # that takes input ID "two_years_range"
     plot <- ggplotly(ggplot())
     plot
   })
