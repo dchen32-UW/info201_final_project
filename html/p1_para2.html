@@ -1,0 +1,72 @@
+<div class = 'p1_paras'>
+  
+  <style>
+    .p1_paras {
+      display: inline-block;
+      text-align: left;
+      margin: auto;
+    }
+    
+    .package {
+      font-family: "Courier New";
+      color: #008080;
+    }
+    
+    .hint {
+      font-style: italic;
+      color: #2F4F4F;
+    }
+    
+    .point {
+      font-weight: bold;
+      color: #C71585;
+    }
+    
+    div.image_text {
+      display: inline-block;
+      text-align: center;
+      margin: auto;
+    }
+    
+    span.image_text {
+      display: inline-block;
+      max-width: 150px;
+      word-wrap: normal;
+      margin-bottom: -50px;
+      font-family: "Courier New";
+      font-size: 10px;
+      font-weight: bold;
+      font-style: italic;
+      color: #666699;
+    }
+    
+    .arrow {
+      display: inline-block;
+      font-weight: 100;
+      font-style: normal;
+      margin-top: -90px;
+      margin-bottom: -100px;
+      font-family: "Times New Roman";
+      font-size: 150px;
+      transform: scale(1, 0.375);
+    }
+  </style>
+  <p>
+    As seen above, each mega region has some geographical significance, in the sense that each mega region has a
+    <span class = 'hint'>
+      specific geographical profile
+    </span>
+    that is
+    <span class = 'hint'>
+      tied to a temperature profile
+    </span>
+    . Thus, we predict that when we examine the monthly mean land temperature measurments between countries, essentially their temperature profile, and utilize that dataset to
+    <span class = 'point'>
+      calculate correlations
+    </span>
+    between countries, we should see geographical significance in the clusters formed. Simply put, countries that are closely related together in terms of having similar temperature profiles should also have similar geographical profiles as the two are linked together. To test our hypothesis, we plot a correlation matrix shown below, that was calculated using
+    <span class = 'hint'>
+      Spearmann's correlation metric
+    </span> via each countries' monthly mean land temperatures, and annotate the corresponding mega regions as a column annotation.
+  </p>
+</div>

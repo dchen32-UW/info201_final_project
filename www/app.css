@@ -1,3 +1,24 @@
+.p1_paras {
+  display: inline-block;
+  text-align: justify;
+  margin: auto;
+}
+
+.package {
+  font-family: "Courier New";
+  color: #008080;
+}
+
+.hint {
+  font-style: italic;
+  color: #2F4F4F;
+}
+
+.point {
+  font-weight: bold;
+  color: #C71585;
+}
+
 div.image_text {
   display: inline-block;
   text-align: center;
