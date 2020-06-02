@@ -103,15 +103,10 @@ my_server <- function(input, output) {
     plot
   })
   
-  # intiate as empty plot for now
+  # get world map for page 3 temperature changes
   output$temp_change_worldmap <- renderPlotly({
-    # make a ggplot map w/ avg_country_temp_data
-    # that takes input ID "two_years_range"
-    
-    #NEEDS TO TAKE A VECTOR OF TWO YEARS (RANGE) INSTEAD
-    #OF EXPLICIT VALUES
-    plot <- temp_change_plot(avg_country_temp_data, c(1900, 2000))
-    result <- ggplotly(plot)
-    result
+    plot <- temp_change_plot(avg_country_temp_data,
+                             input$p3_2year_range)
+    plot
   })
 }

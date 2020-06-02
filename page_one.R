@@ -36,6 +36,12 @@ main_panel_para_9 <-
 main_panel_para_10 <-
   readChar("html/p1_para10.html",
            file.info("html/p1_para10.html")$size)
+main_panel_para_11 <-
+  readChar("html/p1_para10.html",
+           file.info("html/p1_para11.html")$size)
+main_panel_para_12 <-
+  readChar("html/p1_para12.html",
+           file.info("html/p1_para12.html")$size)
 wasserstein_earths <-
   readChar("html/wasserstein_earths.html",
            file.info("html/wasserstein_earths.html")$size)
@@ -91,6 +97,7 @@ page_one_heatmaps <- tabPanel(
       value = splot_p1_temp_range$range
     ),
     plotlyOutput(outputId = "emd_grouped_scatterplot"),
+    HTML(main_panel_para_11),
     sliderInput(
       inputId = "sp1_mega_abs_lat_range",
       label = "Range of Absolute Latitude",
@@ -107,6 +114,7 @@ page_one_heatmaps <- tabPanel(
       max = splot_p1_temp_range$max,
       value = splot_p1_temp_range$range
     ),
-    plotlyOutput(outputId = "emd_mega_scatterplot")
+    plotlyOutput(outputId = "emd_mega_scatterplot"),
+    HTML(main_panel_para_12)
   )
 )

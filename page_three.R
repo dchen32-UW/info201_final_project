@@ -9,7 +9,7 @@ page_three_worldmap <- tabPanel(
   sidebarLayout(
     sidebarPanel(
       sliderInput(
-        inputId = "two_years_range",
+        inputId = "p3_2year_range",
         label = "Range of Years",
         sep = "",
         min = country_temp_constants$time_range$min,

@@ -20,6 +20,8 @@ blank_theme <- theme_bw() +
     axis.title = element_blank(),
     plot.background = element_rect(fill = background_color,
                                    color = background_color),
+    legend.background = element_rect(fill = background_color,
+                                     color = background_color),
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),

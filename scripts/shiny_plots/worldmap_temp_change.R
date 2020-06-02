@@ -2,9 +2,8 @@ library(ggplot2)
 library(plotly)
 library(dplyr)
 
-#values for testing:
-  #df <- avg_country_temp_data
-  #years <- c(1850, 2000)
+# import constants (blank them)
+source("scripts/shiny_utils/constants.R")
 
 temp_change_plot <- function(df, years) {
   world_map <- map_data("world")
@@ -21,7 +20,7 @@ temp_change_plot <- function(df, years) {
     group_by(region) %>%
     summarise(avg_temp_yr2 = mean(avg_temp, na.rm = TRUE))
   
-  #join the two year datasets and computer/include difference
+  #join the two year datasets and compute/include difference
   avg_temps_data <- full_join(data_yr1,
                               data_yr2,
                               by = "region") %>%
@@ -31,26 +30,34 @@ temp_change_plot <- function(df, years) {
   map_data <- left_join(world_map, avg_temps_data)
   
   #make plot
-  plot <- ggplot(map_data) +
-    geom_polygon(mapping = aes(x = long,
-                               y = lat,
-                               group = group,
-                               fill = change),
-    )
-  return(plot)
-          
-}
+  plot <-
+    ggplot(map_data) +
+    geom_polygon(
+      mapping = aes(x = long,
+                    y = lat,
+                    group = group,
+                    fill = change,
+                    text =
+                      paste0("Country: ", region,
+                             "<br>",
+                             "Change in Temp (˚C): ",
+                             round(change, 2))),
+      color = "white",
+      size = .1
+    ) +
+    scale_fill_continuous(low = "Yellow", high = "Red") +
+    labs(fill = "Mean Temp Change (˚C)",
+         title =
+         paste("Change in Mean Land Temperature from",
+               years[1], "to", years[2])) +
+    blank_theme
   
-  #Theme
-  blank_theme <- theme_bw() +
-    theme(
-      axis.line = element_blank(),
-      axis.text = element_blank(),
-      axis.ticks = element_blank(),
-      axis.title = element_blank(),
-      plot.background = element_blank(),
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      panel.border = element_blank(),
-    )
-  #^just outting this here for now will change tomorrow^
+  # make interactive
+  plot <-
+    ggplotly(plot, tooltip = "text") %>%
+    layout(plot_bgcolor = background_color,
+           paper_bgcolor = background_color,
+           legend = list(bgcolor = background_color))
+
+  return(plot)
+}
