@@ -20,6 +20,8 @@ source("scripts/shiny_plots/total_temperature_heatmaps.R")
 compute_hists <- function(temp_data, countries) {
   # set empty list for hists
   hists <- list()
+  # set empty vector for mean changes in temperature
+  means <- c()
   # gather hists for each country
   for (country in countries) {
     # get information for temps in the past
@@ -27,15 +29,13 @@ compute_hists <- function(temp_data, countries) {
       temp_data %>%
       filter(year >= 1912 & year <= 1942) %>%
       filter(region == country) %>%
-      select(avg_temp,
-             date)
+      select(avg_temp, date)
     # get information for temps in the present
     present_temp_data <-
       temp_data %>%
       filter(year >= 1982 & year <= 2012) %>%
       filter(region == country) %>%
-      select(avg_temp,
-             date)
+      select(avg_temp, date)
     # calculate change
     avg_temp_past <-
       past_temp_data %>%
@@ -45,17 +45,26 @@ compute_hists <- function(temp_data, countries) {
       pull(avg_temp)
     change <-
       avg_temp_present - avg_temp_past
-
+    # assign mean change
+    means <- c(means, mean(change, na.rm = TRUE))
     # assign histogram, temp changes min=-10, max=10, and breaks every 0.25
     hists[[paste0(country)]] <- hist(change, xlim = c(-15, 15),
                                      breaks = seq(-15, 15, 0.125))$density
   }
 
-  # combine into dataframe
-  df_hists <- data.frame(hists)
-  colnames(df_hists) <- countries
+  # combine into dataframe for hists
+  df_hist <- data.frame(hists, stringsAsFactors = FALSE)
+  colnames(df_hist) <- countries
+  # combined into dataframe for means
+  df_means <- data.frame(means, row.names = countries,
+                         stringsAsFactors = FALSE)
+  colnames(df_means) <- c("mean_temp_change")
+  # assign in compact list
+  results <- list()
+  results$df_hist <- df_hist
+  results$df_means <- df_means
 
-  return(df_hists)
+  return(results)
 }
 
 # computes a distance matrix using EMD as the distance metric
@@ -106,7 +115,12 @@ get_cleaned_corr_emd_data <- function(temp_data) {
   data_list$countries <- countries
 
   # compute histograms for each 30 year range of 70 year change
-  df_hist <- compute_hists(temp_data, countries)
+  hist_results <- compute_hists(temp_data, countries)
+  df_hist <- hist_results$df_hist
+  df_means <- hist_results$df_means
+  # assign to data_list
+  data_list$df_hist <- df_hist
+  data_list$df_means <- df_means
 
   # compute wasserstein distance matrix
   df_dist <- compute_emds(df_hist, countries)
