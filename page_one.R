@@ -73,6 +73,8 @@ page_one_heatmaps <- tabPanel(
     plotOutput(outputId = "all_ct_emd_grouped_corrmap"),
     HTML(main_panel_para_9),
     plotlyOutput(outputId = "world_map_emd_grouped"),
-    HTML(main_panel_para_10)
+    HTML(main_panel_para_10),
+    plotlyOutput(outputId = "emd_grouped_scatterplot"),
+    plotlyOutput(outputId = "emd_mega_scatterplot")
   )
 )

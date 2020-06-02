@@ -8,13 +8,13 @@ source("scripts/shiny_plots/emd_heatmap.R")
 # import constants
 source("scripts/shiny_utils/constants.R")
 
-scatterplot_groups <- function(data_list, anno_group) {
+scatterplot_emd_groups <- function(data_list, anno_group) {
   # get temp_data
   temp_data <- data_list$temp_data
   # get list of groups and valid countries
   anno_df <- get_emd_changes_corr_groups(data_list, anno_group)
   # retrieve means
-  df_means <- data_list$means
+  df_means <- data_list$df_means
   # retrieve countries
   countries <- data_list$countries
   # load in world map
@@ -84,6 +84,6 @@ scatterplot_groups <- function(data_list, anno_group) {
     layout(plot_bgcolor = background_color,
            paper_bgcolor = background_color,
            legend = list(bgcolor = background_color))
-  
+
   return(plot)
 }
