@@ -6,6 +6,7 @@ library(plotly)
 source("scripts/shiny_plots/total_temperature_heatmaps.R")
 source("scripts/shiny_plots/emd_heatmap.R")
 source("scripts/shiny_plots/group_world_maps.R")
+source("scripts/shiny_plots/scatterplot_emd_groups.R")
 # page 2 plots
 source("scripts/shiny_plots/scatterplot_year_controlled.R")
 # page 3 plots
@@ -74,6 +75,22 @@ my_server <- function(input, output) {
   output$world_map_emd_grouped <- renderPlotly({
     plot <- world_map_groups(corr_emd_data_list, "Groups",
                              "Wasserstein")
+    plot
+  })
+
+  # get scatterplot of temp change by latitude for DATASET1
+  #   with hclust groups colored on
+  output$emd_grouped_scatterplot <- renderPlotly({
+    plot <- scatterplot_emd_groups(corr_emd_data_list,
+                                   "Groups")
+    plot
+  })
+
+  # get scatterplot of temp change by latitude for DATASET1
+  #   with mega regions colored on
+  output$emd_mega_scatterplot <- renderPlotly({
+    plot <- scatterplot_emd_groups(corr_emd_data_list,
+                                   "Mega Regions")
     plot
   })
 
