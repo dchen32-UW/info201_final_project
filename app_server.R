@@ -8,6 +8,8 @@ source("scripts/shiny_plots/emd_heatmap.R")
 source("scripts/shiny_plots/group_world_maps.R")
 # page 2 plots
 source("scripts/shiny_plots/scatterplot_year_controlled.R")
+# page 3 plots
+source("scripts/shiny_plots/worldmap_temp_change.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
 # import constants
@@ -86,7 +88,11 @@ my_server <- function(input, output) {
   output$temp_change_worldmap <- renderPlotly({
     # make a ggplot map w/ avg_country_temp_data
     # that takes input ID "two_years_range"
-    plot <- ggplotly(ggplot())
-    plot
+    
+    #NEEDS TO TAKE A VECTOR OF TWO YEARS (RANGE) INSTEAD
+    #OF EXPLICIT VALUES
+    plot <- temp_change_plot(avg_country_temp_data, c(1900, 2000))
+    result <- ggplotly(plot)
+    result
   })
 }
