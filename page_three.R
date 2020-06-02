@@ -1,11 +1,17 @@
 library(shiny)
 library(plotly)
 
+# import constants
+source("scripts/shiny_utils/constants.R")
+# import constants for world map
 source("scripts/shiny_utils/constants_worldmap.R")
 
 page_three_worldmap <- tabPanel(
   "Change in Temperature Between Years",
   titlePanel(""),
+  setBackgroundColor(
+    color = background_color
+  ),
   sidebarLayout(
     sidebarPanel(
       sliderInput(

@@ -3,10 +3,15 @@ library(plotly)
 
 # import constants for scatterplot
 source("scripts/shiny_utils/constants_scatterplot.R")
+# import constants
+source("scripts/shiny_utils/constants.R")
 
 page_two_scatterplot <- tabPanel(
   "Disaster Count Per Year",
   titlePanel("Natural Disaster Count for Range of Years"),
+  setBackgroundColor(
+    color = background_color
+  ),
   sidebarLayout(
     sidebarPanel(
       checkboxGroupInput(inputId = "disasters",
