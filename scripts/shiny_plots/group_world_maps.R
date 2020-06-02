@@ -1,5 +1,6 @@
 library(ggplot2)
 library(plotly)
+library(maps)
 
 # import relevant functions for the correlation matrices
 source("scripts/shiny_plots/total_temperature_heatmaps.R")
