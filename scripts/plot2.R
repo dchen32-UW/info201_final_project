@@ -21,3 +21,7 @@ trendline_nd_count_by_year <- function(nd_data) {
          y = "Count (# of Occurrences)")
   return(plot)
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> fb5e62f1bc685e5c1399694db0500ee40f21606f

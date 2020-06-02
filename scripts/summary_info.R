@@ -86,3 +86,7 @@ get_summary_info_disaster <- function(dataset) {
 
   return(result)
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> fb5e62f1bc685e5c1399694db0500ee40f21606f

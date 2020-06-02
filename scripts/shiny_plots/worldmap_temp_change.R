@@ -40,3 +40,17 @@ temp_change_plot <- function(df, years) {
   return(plot)
           
 }
+  
+  #Theme
+  blank_theme <- theme_bw() +
+    theme(
+      axis.line = element_blank(),
+      axis.text = element_blank(),
+      axis.ticks = element_blank(),
+      axis.title = element_blank(),
+      plot.background = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.border = element_blank(),
+    )
+  #^just outting this here for now will change tomorrow^
