@@ -67,13 +67,6 @@ my_server <- function(input, output) {
     all_country_emd_corrmap(corr_emd_data_list, "Groups"),
     bg = background_color
   )
-
-  # get world map for DATASET 1 and mega regions for emds
-  output$world_map_emd_mega_regions <- renderPlotly({
-    plot <- world_map_groups(corr_emd_data_list, "Mega Regions",
-                             "Wasserstein")
-    plot
-  })
   
   # get world map for DATASET 1 and hclustered groups for emds
   output$world_map_emd_grouped <- renderPlotly({

@@ -21,6 +21,21 @@ main_panel_para_4 <-
 main_panel_para_5 <-
   readChar("html/p1_para5.html",
            file.info("html/p1_para5.html")$size)
+main_panel_para_6 <-
+  readChar("html/p1_para6.html",
+           file.info("html/p1_para6.html")$size)
+main_panel_para_7 <-
+  readChar("html/p1_para7.html",
+           file.info("html/p1_para7.html")$size)
+main_panel_para_8 <-
+  readChar("html/p1_para8.html",
+           file.info("html/p1_para8.html")$size)
+main_panel_para_9 <-
+  readChar("html/p1_para9.html",
+           file.info("html/p1_para9.html")$size)
+main_panel_para_10 <-
+  readChar("html/p1_para10.html",
+           file.info("html/p1_para10.html")$size)
 wasserstein_earths <-
   readChar("html/wasserstein_earths.html",
            file.info("html/wasserstein_earths.html")$size)
@@ -48,10 +63,16 @@ page_one_heatmaps <- tabPanel(
     plotlyOutput(outputId = "world_map_temp_grouped"),
     HTML(main_panel_para_5),
     hr(),
+    h3(paste("EMD Distance Between Countries for Changes",
+             "in Monthly Temperature Recordings")),
+    HTML(main_panel_para_6),
     HTML(wasserstein_earths),
-    plotlyOutput(outputId = "world_map_emd_mega_regions"),
+    HTML(main_panel_para_7),
     plotOutput(outputId = "all_ct_emd_mega_corrmap"),
+    HTML(main_panel_para_8),
+    plotOutput(outputId = "all_ct_emd_grouped_corrmap"),
+    HTML(main_panel_para_9),
     plotlyOutput(outputId = "world_map_emd_grouped"),
-    plotOutput(outputId = "all_ct_emd_grouped_corrmap")
+    HTML(main_panel_para_10)
   )
 )
