@@ -81,16 +81,18 @@ my_server <- function(input, output) {
   # get scatterplot of temp change by latitude for DATASET1
   #   with hclust groups colored on
   output$emd_grouped_scatterplot <- renderPlotly({
-    plot <- scatterplot_emd_groups(corr_emd_data_list,
-                                   "Groups")
+    plot <- scatterplot_emd_groups(corr_emd_data_list, "Groups",
+                                   input$sp1_grouped_abs_lat_range,
+                                   input$sp1_grouped_temp_range)
     plot
   })
 
   # get scatterplot of temp change by latitude for DATASET1
   #   with mega regions colored on
   output$emd_mega_scatterplot <- renderPlotly({
-    plot <- scatterplot_emd_groups(corr_emd_data_list,
-                                   "Mega Regions")
+    plot <- scatterplot_emd_groups(corr_emd_data_list, "Mega Regions",
+                                   input$sp1_mega_abs_lat_range,
+                                   input$sp1_mega_temp_range)
     plot
   })
 

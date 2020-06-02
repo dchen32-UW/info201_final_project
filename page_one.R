@@ -74,7 +74,39 @@ page_one_heatmaps <- tabPanel(
     HTML(main_panel_para_9),
     plotlyOutput(outputId = "world_map_emd_grouped"),
     HTML(main_panel_para_10),
+    sliderInput(
+      inputId = "sp1_grouped_abs_lat_range",
+      label = "Range of Absolute Latitude",
+      sep = "",
+      min = splot_p1_abs_lat_range$min,
+      max = splot_p1_abs_lat_range$max,
+      value = splot_p1_abs_lat_range$range
+    ),
+    sliderInput(
+      inputId = "sp1_grouped_temp_range",
+      label = "Range of Temp Change (˚C)",
+      sep = "",
+      min = splot_p1_temp_range$min,
+      max = splot_p1_temp_range$max,
+      value = splot_p1_temp_range$range
+    ),
     plotlyOutput(outputId = "emd_grouped_scatterplot"),
+    sliderInput(
+      inputId = "sp1_mega_abs_lat_range",
+      label = "Range of Absolute Latitude",
+      sep = "",
+      min = splot_p1_abs_lat_range$min,
+      max = splot_p1_abs_lat_range$max,
+      value = splot_p1_abs_lat_range$range
+    ),
+    sliderInput(
+      inputId = "sp1_mega_temp_range",
+      label = "Range of Temp Change (˚C)",
+      sep = "",
+      min = splot_p1_temp_range$min,
+      max = splot_p1_temp_range$max,
+      value = splot_p1_temp_range$range
+    ),
     plotlyOutput(outputId = "emd_mega_scatterplot")
   )
 )

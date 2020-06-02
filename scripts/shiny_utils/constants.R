@@ -24,3 +24,6 @@ blank_theme <- theme_bw() +
     panel.grid.minor = element_blank(),
     panel.border = element_blank(),
   )
+# define min and max for scatterplot on page 1
+splot_p1_abs_lat_range <- list(min = 0, max = 75, range = c(0, 75))
+splot_p1_temp_range <- list(min = 0, max = 1.5, range = c(0, 1.5))

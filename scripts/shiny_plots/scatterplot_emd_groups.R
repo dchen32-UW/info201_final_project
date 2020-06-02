@@ -8,7 +8,8 @@ source("scripts/shiny_plots/emd_heatmap.R")
 # import constants
 source("scripts/shiny_utils/constants.R")
 
-scatterplot_emd_groups <- function(data_list, anno_group) {
+scatterplot_emd_groups <- function(data_list, anno_group,
+                                   lat_range, temp_range) {
   # get temp_data
   temp_data <- data_list$temp_data
   # get list of groups and valid countries
@@ -50,40 +51,62 @@ scatterplot_emd_groups <- function(data_list, anno_group) {
     group_by(region) %>%
     summarise(map_groups = map_groups[1],
               map_colors = map_colors[1],
-              mean_lat = mean(lat, na.rm = TRUE),
+              mean_abs_lat = abs(mean(lat, na.rm = TRUE)),
               mean_long = mean(long, na.rm = TRUE)) %>%
     mutate(mean_temp_change = df_means[region, "mean_temp_change"])
-  
+  # filtering for widgets
+  plot_data <-
+    world_data_subset %>%
+    filter(mean_abs_lat >= lat_range[1] &
+             mean_abs_lat <= lat_range[2]) %>%
+    filter(mean_temp_change >= temp_range[1] &
+             mean_temp_change <= temp_range[2])
   # plot
-  plot <-
-    ggplot(data = world_data_subset) +
-    geom_point(
-      mapping = aes(x = abs(mean_lat),
-                    y = mean_temp_change,
-                    color = map_groups,
-                    text = paste0("Country: ", region,
-                                  "<br>",
-                                  anno_group,  ": ", map_groups,
-                                  "<br>",
-                                  "Mean Land Temp Change (˚C): ",
-                                  round(mean_temp_change, 2),
-                                  "<br>",
-                                  "Absolute Latitude: ",
-                                  round(abs(mean_lat), 2)))
-    ) +
-    scale_color_manual(values = anno_df$colors) +
-    labs(color = anno_group,
-         title = paste(anno_group,
-                       "on Mean Land Temp Change by Absolute Latitude"),
-         x = "Absolute Latitude (Distance From Equator)",
-         y = "Mean Land Temperature Change (˚C)")
-  
-  # make interactive
-  plot <-
-    ggplotly(plot, tooltip = "text") %>%
-    layout(plot_bgcolor = background_color,
-           paper_bgcolor = background_color,
-           legend = list(bgcolor = background_color))
+  # deal with empty cases
+  if (nrow(plot_data) == 0) {
+    plot <-
+      ggplot() +
+      labs(color = anno_group,
+           title = paste(anno_group,
+                         "on ∆Temp by Abs Latitude"),
+           x = "Absolute Latitude (Distance From Equator)",
+           y = "Mean Land Temperature Change (˚C)")
+    plot <-
+      ggplotly(plot) %>%
+      layout(plot_bgcolor = background_color,
+             paper_bgcolor = background_color,
+             legend = list(bgcolor = background_color))
+  } else {
+    plot <-
+      ggplot(data = plot_data) +
+      geom_point(
+        mapping = aes(x = mean_abs_lat,
+                      y = mean_temp_change,
+                      color = map_groups,
+                      text = paste0("Country: ", region,
+                                    "<br>",
+                                    anno_group,  ": ", map_groups,
+                                    "<br>",
+                                    "Mean Land Temp Change (˚C): ",
+                                    round(mean_temp_change, 2),
+                                    "<br>",
+                                    "Absolute Latitude: ",
+                                    round(mean_abs_lat, 2)))
+      ) +
+      scale_color_manual(values = anno_df$colors) +
+      labs(color = anno_group,
+           title = paste(anno_group,
+                         "on ∆Temp by Abs Latitude"),
+           x = "Absolute Latitude (Distance From Equator)",
+           y = "Mean Land Temperature Change (˚C)")
+    
+    # make interactive
+    plot <-
+      ggplotly(plot, tooltip = "text") %>%
+      layout(plot_bgcolor = background_color,
+             paper_bgcolor = background_color,
+             legend = list(bgcolor = background_color))
+  }
 
   return(plot)
 }
