@@ -37,7 +37,7 @@ main_panel_para_10 <-
   readChar("html/p1_para10.html",
            file.info("html/p1_para10.html")$size)
 main_panel_para_11 <-
-  readChar("html/p1_para10.html",
+  readChar("html/p1_para11.html",
            file.info("html/p1_para11.html")$size)
 main_panel_para_12 <-
   readChar("html/p1_para12.html",
