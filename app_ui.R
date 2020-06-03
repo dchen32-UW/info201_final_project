@@ -8,11 +8,14 @@ source("page_one.R")
 source("page_two.R")
 # import page three: world map with temperature change over range of years
 source("page_three.R")
+# import sources
+source("sources.R")
 
 my_ui <- navbarPage(
   "Final Deliverable: Impacts of Climate Change",
   overview,
   page_one_heatmaps,
   page_two_scatterplot,
-  page_three_worldmap
+  page_three_worldmap,
+  sources
 )
