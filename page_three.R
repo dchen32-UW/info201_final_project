@@ -8,7 +8,7 @@ source("scripts/shiny_utils/constants_worldmap.R")
 
 page_three_worldmap <- tabPanel(
   "Change in Temperature Between Years",
-  titlePanel(""),
+  titlePanel("Mean Change in Global Temperatures for Range of Years"),
   setBackgroundColor(
     color = background_color
   ),
