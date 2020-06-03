@@ -1,5 +1,6 @@
 library(shiny)
 library(shinyWidgets)
+library(plotly)
 
 # import constants
 source("scripts/shiny_utils/constants.R")
@@ -20,7 +21,7 @@ takeaways <- tabPanel(
     color = background_color
   ),
   HTML(summary_para1),
-  plotlyOutput(outputId = "world_map_emd_grouped"),
+  plotlyOutput(outputId = "summary_emd_group_map"),
   HTML(summary_para2),
   htmlOutput(outputId = "temp_change_summary_table")
 )

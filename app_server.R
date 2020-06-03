@@ -80,6 +80,13 @@ my_server <- function(input, output) {
     plot
   })
 
+  # get world map for DATASET 1 and hclustered groups for emds
+  output$summary_emd_group_map <- renderPlotly({
+    plot <- world_map_groups(corr_emd_data_list, "Groups",
+                             "Wasserstein")
+    plot
+  })
+
   # get scatterplot of temp change by latitude for DATASET1
   #   with hclust groups colored on
   output$emd_grouped_scatterplot <- renderPlotly({
