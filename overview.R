@@ -1,4 +1,8 @@
 library(shiny)
+library(shinyWidgets)
+
+# import constants
+source("scripts/shiny_utils/constants.R")
 
 #load HTML paragraphs
 overview_para1 <-
@@ -19,7 +23,7 @@ overview <- tabPanel(
     color = background_color
   ),
   HTML(overview_para1),
-  img("Bangladesh Floods", src = "www/floods.jpg"),
+  img(alt = "Bangladesh Floods", src = "floods.jpg"),
   HTML(overview_para2),
   HTML(overview_para3)
 )
