@@ -20,7 +20,7 @@ page_three_worldmap <- tabPanel(
         sep = "",
         min = country_temp_constants$time_range$min,
         max = country_temp_constants$time_range$max,
-        value = country_temp_constants$time_range$range
+        value = c(1912, 2012)
       )
     ),
     mainPanel(

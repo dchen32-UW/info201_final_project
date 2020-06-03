@@ -8,8 +8,7 @@ source("scripts/shiny_plots/emd_heatmap.R")
 # import constants
 source("scripts/shiny_utils/constants.R")
 
-scatterplot_emd_groups <- function(data_list, anno_group,
-                                   lat_range, temp_range) {
+get_clean_merged_world_data <- function(data_list, anno_group) {
   # get temp_data
   temp_data <- data_list$temp_data
   # get list of groups and valid countries
@@ -45,6 +44,25 @@ scatterplot_emd_groups <- function(data_list, anno_group,
   world_data_subset <- left_join(world_data, temp_data_subset, by = c("region"))
   # fill in NA groups with string NA
   world_data_subset[is.na(world_data_subset)] <- "Not Considered"
+
+  # assign to list
+  results <- list()
+  results$anno_df <- anno_df
+  results$world_data_subset <- world_data_subset
+
+  return(results)
+}
+
+scatterplot_emd_groups <- function(data_list, anno_group,
+                                   lat_range, temp_range) {
+  # get cleaned data
+  clean_data <- get_clean_merged_world_data(data_list, anno_group)
+  # get world data subset
+  world_data_subset <- clean_data$world_data_subset
+  # get list of groups and valid countries
+  anno_df <- clean_data$anno_df
+  # retrieve means
+  df_means <- data_list$df_means
   # get mean latitude per country
   world_data_subset <-
     world_data_subset %>%

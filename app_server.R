@@ -11,6 +11,8 @@ source("scripts/shiny_plots/scatterplot_emd_groups.R")
 source("scripts/shiny_plots/scatterplot_year_controlled.R")
 # page 3 plots
 source("scripts/shiny_plots/worldmap_temp_change.R")
+# import summary information
+source("scripts/shiny_plots/table_groups_summary.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
 # import constants
@@ -108,5 +110,11 @@ my_server <- function(input, output) {
     plot <- temp_change_plot(avg_country_temp_data,
                              input$p3_2year_range)
     plot
+  })
+
+  # get table for summary latitude and change in temperature
+  output$temp_change_summary_table <- renderText({
+    table <- get_summary_table(corr_emd_data_list)
+    table
   })
 }

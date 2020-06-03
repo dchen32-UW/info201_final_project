@@ -1,14 +1,29 @@
 library(shiny)
+library(shinyWidgets)
 
-# Summary:
+# import constants
+source("scripts/shiny_utils/constants.R")
 
+# load HTML paragraphs
+summary_para1 <-
+  readChar("html/summary_para1.html",
+           file.info("html/summary_para1.html")$size)
+summary_para2 <-
+  readChar("html/summary_para2.html",
+           file.info("html/summary_para2.html")$size)
 
-# Take Away One:
-
-# Through out this assignment we learned how the eath has changed over the past
-# few years. This change is in temperatures, water levels, and more. We used 
-# different graphs to show how the climate has changed in different ways.
-
+# page layout
+takeaways <- tabPanel(
+  "Summary",
+  titlePanel("Key Takeaways and Conclusion"),
+  setBackgroundColor(
+    color = background_color
+  ),
+  HTML(summary_para1),
+  plotlyOutput(outputId = "world_map_emd_grouped"),
+  HTML(summary_para2),
+  htmlOutput(outputId = "temp_change_summary_table")
+)
 
 # Take Away Two:
 
