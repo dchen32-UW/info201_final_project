@@ -65,14 +65,14 @@ my_server <- function(input, output) {
     all_country_emd_corrmap(corr_emd_data_list, "Mega Regions"),
     bg = background_color
   )
-  
+
   # get corrmatrix of DATASET 1 using all emds between 30 year ranges
   #   and a 70 year difference with mega regions with hclustered groups
   output$all_ct_emd_grouped_corrmap <- renderPlot(
     all_country_emd_corrmap(corr_emd_data_list, "Groups"),
     bg = background_color
   )
-  
+
   # get world map for DATASET 1 and hclustered groups for emds
   output$world_map_emd_grouped <- renderPlotly({
     plot <- world_map_groups(corr_emd_data_list, "Groups",
@@ -111,7 +111,7 @@ my_server <- function(input, output) {
                                 input$time_range)
     plot
   })
-  
+
   # get world map for page 3 temperature changes
   output$temp_change_worldmap <- renderPlotly({
     plot <- temp_change_plot(avg_country_temp_data,
@@ -121,7 +121,21 @@ my_server <- function(input, output) {
 
   # get table for summary latitude and change in temperature
   output$temp_change_summary_table <- renderText({
-    table <- get_summary_table(corr_emd_data_list)
+    table <- get_temp_summary_table(corr_emd_data_list)
+    table
+  })
+
+  # get table for summary natural disaster counts
+  output$nd_count_summary_table <- renderText({
+    table <- get_nd_summary_table(nd_data,
+                                  "count")
+    table
+  })
+
+  # get table for summary natural disaster damages
+  output$nd_damage_summary_table <- renderText({
+    table <- get_nd_summary_table(nd_data,
+                                  "damage")
     table
   })
 }
