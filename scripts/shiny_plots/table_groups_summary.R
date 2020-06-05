@@ -128,7 +128,8 @@ get_temp_summary_table <- function(data_list) {
   groups <- world_data_subset %>% pull(map_groups)
   groups_colors <- anno_df$colors[groups]
   # format table
-  bg_col <- colorRampPalette(c("yellow", "red"))(5)
+  lat_bg_col <- colorRampPalette(c("yellow", "red"))(5)
+  temp_bg_col <- c(lat_bg_col[2], lat_bg_col[-2])
   txt_col <- c("black", "black", "white", "white", "white")
   temp <-
     world_data_subset %>%
@@ -138,10 +139,17 @@ get_temp_summary_table <- function(data_list) {
                 background = groups_colors,
                 background_as_tile = T)
     }) %>%
-    mutate_if(is.numeric, function(x) {
+    mutate_at(vars(contains("lat")), function(x) {
       cell_spec(x, bold = T,
                 color = txt_col,
-                background = bg_col,
+                background = lat_bg_col,
+                background_as_tile = T,
+                font_size = spec_font_size(x))
+    }) %>%
+    mutate_at(vars(contains("temp")), function(x) {
+      cell_spec(x, bold = T,
+                color = txt_col,
+                background = temp_bg_col,
                 background_as_tile = T,
                 font_size = spec_font_size(x))
     })

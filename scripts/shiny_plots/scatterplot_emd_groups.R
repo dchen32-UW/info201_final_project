@@ -13,8 +13,6 @@ get_clean_merged_world_data <- function(data_list, anno_group) {
   temp_data <- data_list$temp_data
   # get list of groups and valid countries
   anno_df <- get_emd_changes_corr_groups(data_list, anno_group)
-  # retrieve means
-  df_means <- data_list$df_means
   # retrieve countries
   countries <- data_list$countries
   # load in world map
@@ -117,7 +115,7 @@ scatterplot_emd_groups <- function(data_list, anno_group,
                          "on ∆Temp by Abs Latitude"),
            x = "Absolute Latitude (Distance From Equator)",
            y = "Mean Land Temperature Change (˚C)")
-    
+
     # make interactive
     plot <-
       ggplotly(plot, tooltip = "text") %>%
