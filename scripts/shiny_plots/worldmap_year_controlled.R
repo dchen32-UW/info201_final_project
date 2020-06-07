@@ -21,6 +21,6 @@ get_p3_worldmap_constants <- function(temp_data) {
   constants$time_range$min <- time_range[1]
   constants$time_range$max <- time_range[2]
   constants$time_range$range <- time_range
-  
+
   return(constants)
 }
