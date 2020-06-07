@@ -13,6 +13,7 @@ source("scripts/shiny_plots/scatterplot_year_controlled.R")
 source("scripts/shiny_plots/worldmap_temp_change.R")
 # import summary information
 source("scripts/shiny_plots/table_groups_summary.R")
+source("scripts/shiny_plots/takeaway3_summary_info.R")
 # import data gathering functions
 source("scripts/shiny_utils/data_gathering.R")
 # import constants
@@ -137,5 +138,19 @@ my_server <- function(input, output) {
     table <- get_nd_summary_table(nd_data,
                                   "damage")
     table
+  })
+
+  # get text for takeaway 3
+  output$takeaway3 <- renderText({
+    countries <- get_summary3_countries(avg_country_temp_data)
+    min_country <- countries[1]
+    max_country <- countries[2]
+    result <- paste("The country with the maximum change in temperature",
+                    "from 1912 to 2012 was", max_country, "which is an island",
+                    "located above Norway and Sweden. The country with the",
+                    "minimum change in temperature from 1912 to 2012 was",
+                    min_country, "which is located west of China and south",
+                    "of Kazakhstan.")
+    result
   })
 }

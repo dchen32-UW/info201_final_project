@@ -24,6 +24,9 @@ summary_para5 <-
 summary_para6 <-
   readChar("html/summary_para6.html",
            file.info("html/summary_para6.html")$size)
+summary_para7 <-
+  readChar("html/summary_para7.html",
+           file.info("html/summary_para7.html")$size)
 
 # page layout
 takeaways <- tabPanel(
@@ -44,5 +47,8 @@ takeaways <- tabPanel(
   htmlOutput(outputId = "nd_damage_summary_table"),
   HTML(summary_para5),
   h4("Takeaway 3: Increase of Temperature Over Time"),
-  HTML(summary_para6)
+  HTML(summary_para6),
+  textOutput(outputId = "takeaway3"),
+  br(),
+  HTML(summary_para7)
 )
