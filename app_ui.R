@@ -14,7 +14,7 @@ source("summary.R")
 source("sources.R")
 
 my_ui <- navbarPage(
-  "Final Deliverable: Impacts of Climate Change",
+  "Impacts of Climate Change",
   overview,
   page_one_heatmaps,
   page_two_scatterplot,
