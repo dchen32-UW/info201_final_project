@@ -5,8 +5,8 @@ account: dchen32
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2392100
-bundleId: 3239864
+bundleId: 3240236
 url: https://dchen32.shinyapps.io/info201_final_project/
-when: 1591569947.51009
+when: 1591580713.45498
 asMultiple: FALSE
 asStatic: FALSE
